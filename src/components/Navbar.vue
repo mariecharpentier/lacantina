@@ -34,19 +34,9 @@ export default {
     align-items: center;
 }
 
-.navbar a:hover,
-.navbar-recipes a:hover {
-    color: #ffe51a;
-    transform: scale(1.05);
+.navbar .nav-recipes a:first-of-type {
+    padding: 0 20px;
 }
-
-
-.navbar a:active,
-.navbar-recipes a:active {
-    transition: none;
-    color: #ffe51a;
-}
-
 
 
 </style>
