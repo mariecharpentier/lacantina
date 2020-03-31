@@ -2,8 +2,18 @@
 	<div class="container">
 		<h2>Toutes nos recettes</h2>
 
-		<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" />		
+		<form class="filterform centered" @submit.prevent>
+			<input type="search" placeholder="Tapez un nom..." v-model="search">
+			<label for="filter">Filtrer par :</label>
+			<select name="filterBy" v-model="filterBy">
+				<option value="titre">Nom de la recette</option>
+				<option value="niveau">Difficulté</option>
+			</select>
+		</form>
 
+		<div v-if="recipesList">
+			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" />		
+		</div>
 	</div>
 </template>
 
@@ -19,8 +29,19 @@ export default {
 	},
 	data: function(){
 		return {
-			recipesList: null
+			recipesList: null,
+			search: '',
+			filterBy: 'titre',
 		}
+	},
+	computed: {
+		filteredList: function() {
+			return this.recipesList.filter((recipe) => {
+				const on_search = 
+				this.filterBy == 'titre' ? (recipe.titre) : (recipe.niveau)
+				return on_search.includes(this.search);
+			});
+		}	
 	},
 	created: function() {
 		userService.getAllRecipes().then((recipesList) => {
@@ -28,18 +49,12 @@ export default {
 			console.log(recipesList)
 		});
 	},
-	computed: {
-		filteredList: function() {
-			return this.recipesList	
-		
-		}
-	},
 	};
 </script>
 
 <style>
-	li {
-		list-style-type: none;
-	}
+.filterform {
+	margin: 2em 0;
+}
 
 </style>

@@ -27,7 +27,7 @@ export default {
 
 
 #app {
-  font-family: 'Lato', Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;
@@ -48,9 +48,19 @@ h2 {
   font-size: 30px;
 }
 
+h3 {
+  font-size: 30px;
+  color: #595a5a;
+}
+
 ul {
   padding: 0;
 }
+
+li {
+  list-style-type: none;
+}
+
 .container {
   max-width: 1152px;
   margin: 0 auto;
