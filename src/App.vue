@@ -13,6 +13,7 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
+import recipeService from '../services/recipeService.js';
 
 export default {
   name: 'App',

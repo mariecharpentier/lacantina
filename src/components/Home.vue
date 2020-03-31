@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// import userService from '../services/userService.js';
+import recipeService from '../services/recipeService.js';
 
 export default {
   name: 'Home' 
