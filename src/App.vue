@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <router-link to="/">
-        <h1 class="main-title">La Cantina</h1>
-      </router-link>
+      <h1 class="main-title">La Cantina</h1>
       <img alt="line" src="./assets/line.svg" class="line" >
     </header>
     <Navbar />
@@ -54,14 +52,14 @@ a {
 }
 
 header {
-  background: url(./assets/lemons.jpg) no-repeat center;
+  background: url(./assets/lemons.jpg) no-repeat;
   background-size: cover;
   padding-top: 6em;
 }
 
 .main-title {
   font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 4em;
+  font-size: 5em;
   margin-block-start: 0;
   margin-block-end: 0.1em;
 }
