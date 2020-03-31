@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import recipeService from '../services/recipeService.js';
+// import userService from '../services/userService.js';
 
 export default {
   name: 'Home' 
@@ -23,14 +23,9 @@ export default {
 
 <style>
 
-h2 {
-  color: #ffe51a;
-  font-size: 30px;
-}
-
 section {
   background-color: #f9f679;
-  width: 50%;
+  width: 60%;
   padding-bottom: 30px;
 }
 

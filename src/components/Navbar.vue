@@ -3,7 +3,7 @@
         <div class="container">
             <router-link to="/">Home</router-link>
             <div class="nav-recipes">
-                <router-link to="/recipes">Les Recettes</router-link>
+                <router-link to="/list">Les Recettes</router-link>
                 <router-link to="/add">Ajouter une recette</router-link>
             </div>
         </div>
@@ -21,7 +21,6 @@ export default {
 .navbar {
     margin-bottom: 3em;
     font-family: 'Roboto Slab', serif;
-    color: #000000;
     font-size: 18px;
     width: 95%;
     margin: 0 auto;
@@ -34,17 +33,8 @@ export default {
     align-items: center;
 }
 
-.navbar a:hover,
-.navbar-recipes a:hover {
-    color: #ffe51a;
-    transform: scale(1.05);
-}
-
-
-.navbar a:active,
-.navbar-recipes a:active {
-    transition: none;
-    color: #ffe51a;
+.navbar .nav-recipes a:first-of-type {
+    padding-right: 15px;
 }
 
 

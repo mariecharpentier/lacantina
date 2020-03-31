@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <h1 class="main-title">La Cantina</h1>
+      <router-link to="/">
+        <h1 class="main-title">La Cantina</h1>
+      </router-link>
       <img alt="line" src="./assets/line.svg" class="line" >
     </header>
     <Navbar />
@@ -11,7 +13,6 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
-import recipeService from '../services/recipeService.js';
 
 export default {
   name: 'App',
@@ -29,7 +30,6 @@ export default {
   font-family: 'Lato', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #000;
 }
 
@@ -42,6 +42,15 @@ a {
   color: #000;
 }
 
+h2 {
+  text-align: center;
+  color: #ffe51a;
+  font-size: 30px;
+}
+
+ul {
+  padding: 0;
+}
 .container {
   max-width: 1152px;
   margin: 0 auto;
@@ -59,9 +68,10 @@ header {
 
 .main-title {
   font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 5em;
+  font-size: 4em;
   margin-block-start: 0;
   margin-block-end: 0.1em;
+  text-align: center;
 }
 
 .line {

@@ -1,49 +1,45 @@
 <template>
-	<div class="container centered">
+	<div class="container">
 		<h2>Toutes nos recettes</h2>
 
-		<div class="recipe-list">
-			<figure>
-				<!-- <img :src='recette.photo' :alt='`Photo de ${titre}`'> -->
-			</figure>
-			<div>
-				<h1>{{ recette.titre }}</h1>
-				
-				<i class="fa"></i>
-				<!-- <p>Temps de préparation : {{ recette.tempsPreparation }} minutes.</p> -->
-				
-				<i class="fa"></i>
-				<!-- <p>Pour {{ recette.personnes }} personne(s).</p> -->
-				
-				<i class="fa"></i>
-				<!-- <p>{{ recette.description }}</p> -->
-				
-				<i class="fa"></i>
-				<!-- <p>Niveau : {{ recette.niveau }}</p> -->
+		<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" />		
 
-			</div>
-		</div>
 	</div>
 </template>
 
 <script>
-import recipeService from '../services/recipeService.js';
+import Recipecard from "./Recipecard";
+
+import userService from '../services/userService.js';
 
 export default {
 	name: 'List',
-	// data: function() {
-	// 	return {
-	// 		// recipes: null
-	// 	};
-	// },	
+	components: {
+		Recipecard
+	},
+	data: function(){
+		return {
+			recipesList: null
+		}
+	},
 	created: function() {
-		recipeService.getAllRecipes().then((list) => {
-			this.recipes = list;
+		userService.getAllRecipes().then((recipesList) => {
+			this.recipesList = recipesList;
+			console.log(recipesList)
 		});
-	}
-};
+	},
+	computed: {
+		filteredList: function() {
+			return this.recipesList	
+		
+		}
+	},
+	};
 </script>
 
 <style>
+	li {
+		list-style-type: none;
+	}
 
 </style>
