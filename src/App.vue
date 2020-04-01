@@ -24,7 +24,7 @@ export default {
 
 /* General */
 #app {
-  font-family: 'Lato', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color:#2E2E2E;

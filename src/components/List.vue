@@ -3,12 +3,12 @@
 		<h2>Toutes nos recettes</h2>
 
 		<form class="filterform centered" @submit.prevent>
-			<input type="search" placeholder="Tapez un nom..." v-model="search">
 			<label for="filter">Filtrer par :</label>
 			<select name="filterBy" v-model="filterBy">
 				<option value="titre">Nom de la recette</option>
 				<option value="niveau">Difficulté</option>
 			</select>
+			<input type="search" placeholder="Tapez un nom..." v-model="search">
 		</form>
 
 		<!-- <form class="filterform" @submit.prevent>
@@ -30,14 +30,13 @@
 		</form> -->
 
 		<div v-if="recipesList">
-			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" />		
+			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove='removeRecipe'/>		
 		</div>
 	</div>
 </template>
 
 <script>
 import Recipecard from "./Recipecard";
-
 import userService from '../services/userService.js';
 
 export default {
@@ -56,6 +55,7 @@ export default {
 			// searchTime:''
 		}
 	},
+
 	computed: {
 		filteredList: function() {
 			return this.recipesList.filter((recipe) => {
@@ -71,6 +71,25 @@ export default {
 			console.log(recipesList)
 		});
 	},
+	// methods: {
+	// 	removeRecipe: function(recipe) {
+	// 		let index = this.recipesList.indexOf(recipe);
+	// 		const deleted_recipe = this.recipesList.splice(index, 1)
+	// 		let id = recipe.id;
+	// 		console.log(id)
+	// 		userService.deleteRecipe(id)
+	// 		.then((res) => {
+	// 			if (res.error && res.error == 1){
+	// 				this.alert('Erreur serveur : veuillez refaire l\'opération ultérieurement.').then(function() {
+	// 					console.log('Closed');
+	// 				});
+	// 				console.log('Error: rollback')
+	// 				this.recipesList.splice(index, 0, deleted_recipe.pop)
+	// 			}
+	// 		})   
+	// 		.catch((error) => console.log(`Ajax error : ${error}`));
+	// 	}
+	// }
 	};
 </script>
 
@@ -83,4 +102,32 @@ export default {
 	justify-content: space-between;
 }
 
+.filterform label {
+	width: 18%;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.filterform input {
+	width: 100%;
+    height: 40px;
+    background-color: #f3f5f8;
+    font-size: 14px;
+    padding-right: 6px;
+	padding-left: 10px;
+    border: none;
+}
+
+.filterform select {
+	border: none;
+	background-color: #f3f5f8;
+	border-radius: 0;
+	width: 30%;
+	height: 40px;
+	line-height: 40px;
+	color: #2f2f2f;
+	cursor: pointer;
+	margin-right: 10px;
+	padding-left: 10px;
+}
 </style>
