@@ -1,24 +1,39 @@
 <template>
     <div class="container centered">
-
       <h2>La recette du jour</h2>
       <section class="container">
-        <article>
-          <img src="" alt="">
-          <h3>La recette</h3>
-          <p>La description sera ici et blablbla</p>
-          <a href="">pour en savoir plus...</a>
-        </article>
+          <Recipecard :recipe="recipe_of_the_day" v-if="recipe_of_the_day" />		
       </section>
     </div>
 
 </template>
 
 <script>
-// import userService from '../services/userService.js';
+import Recipecard from "./Recipecard";
+import userService from '../services/userService.js';
 
 export default {
-  name: 'Home' 
+  name: 'Home' ,
+  data: function(){
+    return {
+      recipesList: null,
+      recipe_of_the_day: null
+    };
+  },
+  components: {
+    Recipecard
+  },
+  methods: {
+    setRandomRecipe: function() {
+      this.recipe_of_the_day = this.recipesList[Math.floor(Math.random() * this.recipesList.length)];
+    },
+  },
+   created: function() {
+      userService.getAllRecipes().then((recipesList) => {
+      this.recipesList = recipesList;
+      this.setRandomRecipe();
+    });    
+  }
 };
 </script>
 
@@ -27,7 +42,7 @@ export default {
 
 section {
   background-color: #f9f679;
-  width: 60%;
+  width: 80%;
   padding-bottom: 30px;
 }
 

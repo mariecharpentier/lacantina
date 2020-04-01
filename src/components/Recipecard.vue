@@ -27,9 +27,9 @@
 export default {
   name: "Recipecard",
   props: {
-    recipe: {
-      type: Object
-    }
+      recipe: {
+        type: Object
+      }
   },
   computed : {
     DEFAULT_PHOTO: function(){

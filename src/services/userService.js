@@ -19,11 +19,11 @@ export default {
 			.catch((error) => console.log(`Ajax error : ${error}`));
 	},
 
-    // deleteRecipe: function(id) {
-	// 	return axios
-	// 		.delete(`${API_ENDPOINT}/recipe/${id}`)
-	// 		.then((res) => res.data);
-	// },
+    deleteRecipe: function(id) {
+		return axios
+			.delete(`${API_ENDPOINT}/recipe/${id}`)
+			.then((res) => res.data);
+	},
 
 	// createRecipe: function(recipe) {
 	// 	return axios
