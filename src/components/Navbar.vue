@@ -52,7 +52,6 @@ export default {
   margin-block-end: 0.1em;
 }
 
-
 .navbar .nav .router-link-active {
     border-bottom: 2px solid #ffe51a;
 }
