@@ -81,4 +81,24 @@ header {
   position: relative;
 }
 
+/* Delete window */
+.dg-content {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:#2E2E2E;
+  text-align: center;
+}
+
+.dg-btn--cancel {
+  background-color: #71a9b4!important;
+}
+
+.dg-btn--ok {
+  color: #71a9b4!important;
+  background-color: #fefefe;
+  border-color: #71a9b4!important;
+}
+
+
 </style>
