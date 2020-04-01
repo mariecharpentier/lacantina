@@ -41,7 +41,7 @@ export default {
 .navbar .nav a {
     font-size: 16px;
     text-transform: uppercase;
-    padding: 0 10px;
+    margin: 0 10px;
 }
 
 .site-title {
@@ -52,28 +52,9 @@ export default {
   margin-block-end: 0.1em;
 }
 
-.navbar .nav a:before {
-    transition: .3s all;
-    width: 0;
-}
 
-.navbar .m-nav .router-link-active:before {
-    content: "";
-    position: absolute;
-    bottom: 37px;
-    width: 22%;
-    height: 2px;
-    background: #ffe51a;
+.navbar .nav .router-link-active {
+    border-bottom: 2px solid #ffe51a;
 }
-
-.navbar .s-nav .router-link-active:before {
-    content: "";
-    position: absolute;
-    bottom: 37px;
-    width: 10%;
-    height: 2px;
-    background: #ffe51a;
-}
-
 
 </style>
