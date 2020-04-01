@@ -1,5 +1,5 @@
 <template>
-    <div class="container centered">
+    <div class="container">
       <h2>La recette du jour</h2>
       <section class="container">
           <Recipecard :recipe="recipe_of_the_day" v-if="recipe_of_the_day" />		
@@ -40,11 +40,6 @@ export default {
 
 <style scoped>
 
-section {
-  background-color: #f9f679;
-  width: 80%;
-  padding-bottom: 30px;
-}
 
 article {
   background: url(../assets/circle.png);

@@ -14,12 +14,11 @@
             <div class="cta-read">
               <router-link :to="`/recipe/${recipe.id}`">Découvrir la recette</router-link>
             </div>
-
-            <div class="cta-edit">
-                <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
-                <a href="" title="Supprimer la recette"><img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/></a>
-            </div>
         </section>
+        <div class="cta-edit">
+            <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
+            <a href="" title="Supprimer la recette"><img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/></a>
+        </div>
     </div>
 </div>
 </template>
@@ -42,39 +41,56 @@ export default {
 <style>
 
 .recipecard {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: stretch;
-    margin-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border: 10px solid #f9f679;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
 }
+
 .recipecard section {
-    padding-left: 20px;
-    background-color: #f9f679;
-    width: 66%;
+  padding-left: 30px;
 }
+
 .photo {
-    width: 27%;
+  width: 36%;
+  height: 350px;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
+
 .recipecard li {
-    font-style: italic;
-    color: #595a5a;
+  font-style: italic;
+  color: #595a5a;
 }
+
 .recipecard li img {
-    width: 18px;
-    margin-right: 5px;
+  width: 18px;
+  margin-right: 5px;
 }
 
 .cta-read {
-  border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 35px;
   text-align: center;
-  background-color: #fff;
-  padding: 2px;
-  margin: 10px 0;
-  width: 30%;
+  background-color: #f9f679;
+  padding: 12px;
+  margin-top: 20px;
 }
 
+.cta-read a {
+  font-size: 19px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+}
+
+.cta-edit {
+  margin-left: auto;
+  margin-right: 5px;
+  align-self: flex-end;
+}
 .cta-edit img {
   width: 36px;
   padding: 4px;
