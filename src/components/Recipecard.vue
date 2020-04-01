@@ -5,8 +5,8 @@
         <section>
             <h3>{{recipe.titre}}</h3>
              <ul>
-                <li><img src="https://img.icons8.com/wired/64/000000/hourglass.png"/>Temps de préparation : {{recipe.tempsPreparation}} min.</li>
-                <li><img src="https://img.icons8.com/wired/64/000000/restaurant.png"/>Pour {{recipe.personnes}} personne(s).</li>
+                <li><img src="https://img.icons8.com/wired/64/000000/hourglass.png"/>Temps de préparation : {{timePrep}}</li>
+                <li><img src="https://img.icons8.com/wired/64/000000/restaurant.png"/>Pour {{persNb}}</li>
                 <li><img src="https://img.icons8.com/wired/64/000000/chef-hat.png"/>Difficulté : {{recipe.niveau}}.</li>
             </ul>
             <p class="description">{{recipe.description}}</p>
@@ -33,6 +33,24 @@ export default {
   computed : {
     DEFAULT_PHOTO: function(){
       return "../assets/default.jpg";
+    },
+    timePrep: function() {
+      var time = this.recipe.tempsPreparation;
+      if (time >= 60){
+        var hour = Math.floor(time / 60);
+        var minutes = (time % 60);
+        return  hour + "h" + minutes ;
+      } else {
+          return (time  + ' min.')
+      }
+    },
+    persNb: function() {
+      var guestNb = this.recipe.personnes;
+      if (guestNb <= 1) {
+        return (this.recipe.personnes + ' personne.')
+      } else {
+        return (this.recipe.personnes + ' personnes.')
+      }
     }
   },
   
