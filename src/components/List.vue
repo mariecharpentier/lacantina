@@ -10,12 +10,12 @@
 			</select>
 			<input type="search" placeholder="Tapez un nom..." v-model="search">
 		</form>
-
+  
 		<!-- <form class="filterform" @submit.prevent>
 			<label for="filter">Filtrer par :</label>
 			<input type="search" placeholder="Nom de la recette..." v-model="searchTitle">
 
-			<select name="filterBy" v-model="filterBy">
+			<select name="filterBy" v-model="cooking-level">
 				<option disabled value="">Niveau</option>
 				<option value="padawan">Padawan</option>
 				<option value="jedi">Jedi</option>
@@ -71,25 +71,25 @@ export default {
 			console.log(recipesList)
 		});
 	},
-	// methods: {
-	// 	removeRecipe: function(recipe) {
-	// 		let index = this.recipesList.indexOf(recipe);
-	// 		const deleted_recipe = this.recipesList.splice(index, 1)
-	// 		let id = recipe.id;
-	// 		console.log(id)
-	// 		userService.deleteRecipe(id)
-	// 		.then((res) => {
-	// 			if (res.error && res.error == 1){
-	// 				this.alert('Erreur serveur : veuillez refaire l\'opération ultérieurement.').then(function() {
-	// 					console.log('Closed');
-	// 				});
-	// 				console.log('Error: rollback')
-	// 				this.recipesList.splice(index, 0, deleted_recipe.pop)
-	// 			}
-	// 		})   
-	// 		.catch((error) => console.log(`Ajax error : ${error}`));
-	// 	}
-	// }
+	methods: {
+		removeRecipe: function(recipe) {
+			let index = this.recipesList.indexOf(recipe);
+			const deleted_recipe = this.recipesList.splice(index, 1)
+			let id = this.recipe.id;
+			console.log('teest')
+			userService.deleteRecipe(id)
+			.then((res) => {
+				if (res.error && res.error == 1){
+					this.alert('Erreur serveur : veuillez refaire l\'opération ultérieurement.').then(function() {
+						console.log('Closed');
+					});
+					console.log('Error: rollback')
+					this.recipesList.splice(index, 0, deleted_recipe.pop)
+				}
+			})   
+			.catch((error) => console.log(`Ajax error : ${error}`));
+		}
+	}
 	};
 </script>
 

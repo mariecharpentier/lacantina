@@ -17,12 +17,16 @@
         </section>
         <div class="cta-edit">
             <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
-            <a href="" title="Supprimer la recette"><img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/></a>
+            <a href="#" title="Supprimer la recette" v-confirm="{ ok: onClickRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
+              <img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/>
+            </a>
         </div>
     </div>
 </div>
 </template>
 <script>
+// import userService from '../services/userService.js';
+
 export default {
   name: "Recipecard",
   props: {
@@ -53,6 +57,11 @@ export default {
       }
     }
   },
+  methods: {
+    onClickRemove: function() {
+      this.$emit("remove", this.recipe);
+    }
+  }
   
 }
 </script>
