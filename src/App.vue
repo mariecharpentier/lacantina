@@ -1,10 +1,7 @@
 <template>
   <div id="app">
-    <header>
-      <router-link to="/">
-        <h1 class="main-title">La Cantina</h1>
-      </router-link>
-      <img alt="line" src="./assets/line.svg" class="line" >
+    <header class="hero-image">
+        <router-link to="/"></router-link>
     </header>
     <Navbar />
     <router-view />
@@ -25,12 +22,12 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,900|Liu+Jian+Mao+Cao|Roboto+Slab:400,700,800&display=swap');
 
-
+/* General */
 #app {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #000;
+  color:#2E2E2E;
 }
 
 body {
@@ -39,7 +36,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #2E2E2E;
 }
 
 h2 {
@@ -70,23 +67,18 @@ li {
   text-align: center;
 }
 
+/* Home */
 header {
-  background: url(./assets/lemons.jpg) no-repeat;
+  padding-top: 12em;
+}
+
+.hero-image {
+  background-image: url("./assets/header.jpg");
+  height: 120%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  padding-top: 6em;
+  position: relative;
 }
-
-.main-title {
-  font-family: 'Liu Jian Mao Cao', cursive;
-  font-size: 4em;
-  margin-block-start: 0;
-  margin-block-end: 0.1em;
-  text-align: center;
-}
-
-.line {
-  width: 95%;
-}
-
 
 </style>

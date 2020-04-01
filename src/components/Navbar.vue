@@ -1,12 +1,10 @@
 <template>
    <nav class="navbar">
-        <div class="container">
-            <router-link to="/">Home</router-link>
-            <div class="nav-recipes">
-                <router-link to="/recipes">Les Recettes</router-link>
-                <router-link to="/add">Ajouter une recette</router-link>
-            </div>
-        </div>
+        <ul>
+            <li><router-link to="/"><h1 class="site-title">La Cantina</h1></router-link></li>
+            <li class="nav s-nav"><router-link to="/recipes">Les Recettes</router-link></li>
+            <li class="nav m-nav"><router-link to="/add">Ajouter une recette</router-link></li>
+        </ul>
     </nav>
 </template>
 
@@ -21,22 +19,61 @@ export default {
 .navbar {
     margin-bottom: 3em;
     font-family: 'Roboto Slab', serif;
-    font-size: 18px;
-    width: 95%;
-    margin: 0 auto;
+    width: 80%;
+    margin: -85px auto 0 auto;
+    position: sticky;
+    top: 0;
+    padding: 10px 40px;
+    background: rgba(255, 255, 255, 0.89);
 }
 
-.navbar>.container {
+.navbar ul {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.navbar .nav-recipes a:first-of-type {
-    padding-right: 15px;
+.navbar li:nth-of-type(2) {
+    margin-left: auto;
 }
 
+.navbar .nav a {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 0 10px;
+}
+
+.site-title {
+  font-family: 'Liu Jian Mao Cao', cursive;
+  font-size: 3em;
+  font-weight: 500;
+  margin-block-start: 0;
+  margin-block-end: 0.1em;
+}
+
+.navbar .nav a:before {
+    transition: .3s all;
+    width: 0;
+}
+
+.navbar .m-nav .router-link-active:before {
+    content: "";
+    position: absolute;
+    bottom: 37px;
+    width: 22%;
+    height: 2px;
+    background: #ffe51a;
+}
+
+.navbar .s-nav .router-link-active:before {
+    content: "";
+    position: absolute;
+    bottom: 37px;
+    width: 10%;
+    height: 2px;
+    background: #ffe51a;
+}
 
 
 </style>
