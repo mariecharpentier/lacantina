@@ -5,48 +5,48 @@
 
             <div class="form-group">
                 <label for="titre">Nom de la recette :</label>
-                <input type="text" id="titre" placeholder="Nom de la recette">
+                <input type="text" id="titre" placeholder="Nom de la recette" v-model="recipe.titre">
             </div>
 
             <div class="form-group">
                 <label for="description">Description :</label>
-                <input type="text" id="description" placeholder="Présentez votre recette...">
+                <input type="text" id="description" placeholder="Présentez votre recette..." v-model="recipe.description">
             </div>
 
             <div class="form-group">
-                <input type="radio" name="level" id="padawan" value="padawan">
+                <input type="radio" name="level" id="padawan" value="padawan" v-model="recipe.niveau">
                 <label for="padawan">Padawan</label>
 
-                <input type="radio" name="level" id="jedi" value="jedi">
+                <input type="radio" name="level" id="jedi" value="jedi" v-model="recipe.niveau">
                 <label for="jedi">Jedi</label>
 
-                <input type="radio" name="level" id="maitre" value="maitre">
+                <input type="radio" name="level" id="maitre" value="maitre" v-model="recipe.niveau">
                 <label for="maitre">Maitre</label>
             </div>
 
             <div class="form-group">
                 <label for="personnes">Nombre de personnes :</label>
-                <input type="text" id="personnes" placeholder="4">
+                <input type="text" id="personnes" placeholder="4" v-model="recipe.personnes">
             </div>
 
             <div class="form-group">
                 <label for="tempsPreparation">Temps de préparation :</label>
-                <input type="text" id="tempsPreparation" placeholder="30">
+                <input type="text" id="tempsPreparation" placeholder="30" v-model="recipe.tempsPreparation">
             </div>
 
             <div class="form-group">
                 <label for="ingredients">Ingrédients :</label>
-                <input type="text" id="ingredients" placeholder="Sel">
+                <input type="text" id="ingredients" placeholder="Sel" v-model="recipe.ingredients">
             </div>
 
             <div class="form-group">
                 <label for="etapes">Etapes :</label>
-                <input type="text" id="etapes" placeholder="Se laver les mains...">
+                <input type="text" id="etapes" placeholder="Se laver les mains..." v-model="recipe.etapes">
             </div>
 
             <div class="form-group">
                 <label for="photo">Photo :</label>
-                <input type="url" id="photo" placeholder="http://">
+                <input type="url" id="photo" placeholder="http://" v-model="recipe.photo">
             </div>
 
             <div class="actions">
@@ -60,36 +60,35 @@
 
 <script>
 
-import userService from '../services/userService.js';
-
 export default {
     name: 'Form',  
-    data: function() {
-		return {
-			recipesList: null,
-		};
-	},
-    methods: {
-    send: function() {
-        const new_recipe = {
-            titre: 'titre',
-            description: 'description test shycgsdiucygu',
-            niveau: 'jedi',
-            personnes: '2',
-            tempsPreparation: '40',
-            ingredients: 'sel',
-            etapes: 'laver',
-            photo: './assets/default.jpg'
-    };
-
-    userService.createRecipe(new_recipe).then((res) => console.log(res));
-    }
+    props: {
+        user: {
+            type: Object,
+            default: function() {
+            return {
+                id: null,
+                titre: '',
+                description: '',
+                niveau: '',
+                personnes: '',
+                tempsPreparation: '',
+                ingredients: '',
+                etapes: '',
+                photo: ''
+                };
+            }
+        }
     },
-    computed: {}
+    methods: {
+        send: function() {
+        this.$emit("send", this.recipe);
+    }
+  }
 };
 </script>
 
-<style scoped>
+<style>
 .userform {
     margin: 2em 0;
 }

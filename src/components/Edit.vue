@@ -27,10 +27,9 @@ export default {
     }
   },
   created: function(){
-      let id = this.$route.params.id
-      userService.getOneRecipe(id).then(data => {
-          this.recipe = data;
-      });
+      userService.getOneRecipe(this.$route.params.id).then(recipe => {
+          this.recipe = recipe;
+      })
   }  
 };
 </script>

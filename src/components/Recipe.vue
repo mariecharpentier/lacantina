@@ -80,8 +80,9 @@ export default {
     },
     methods: {
         onRemove: function() {
-            this.$emit("remove", this.recipe);
-        }
+            this.$emit("remove", this.recipe)
+            .then.this.$router.replace("/recipes");
+        },
   }
 	
    
