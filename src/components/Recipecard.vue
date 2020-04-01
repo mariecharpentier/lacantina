@@ -10,9 +10,13 @@
                 <li><img src="https://img.icons8.com/wired/64/000000/chef-hat.png"/>Difficulté : {{recipe.niveau}}.</li>
             </ul>
             <p class="description">{{recipe.description}}</p>
-            <div class="cta-section">
-                <router-link :to="`/recipe/${recipe.id}`" class="cta">Découvrir la recette</router-link>
-                <router-link :to="`/edit/${recipe.id}`" class="cta">Améliorer la recette</router-link>
+            
+            <div class="cta-read">
+              <router-link :to="`/recipe/${recipe.id}`">Découvrir la recette</router-link>
+            </div>
+
+            <div class="cta-edit">
+                <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
                 <a href="" title="Supprimer la recette"><img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/></a>
             </div>
         </section>
@@ -24,8 +28,7 @@ export default {
   name: "Recipecard",
   props: {
     recipe: {
-      type: Object,
-      required: true
+      type: Object
     }
   },
   computed : {
@@ -61,26 +64,23 @@ export default {
     width: 18px;
     margin-right: 5px;
 }
-.cta-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin: 50px auto 10px auto;
-}
 
-.cta {
-  border: 3px solid #fff;
+.cta-read {
+  border: 1px solid black;
   border-radius: 15px;
   text-align: center;
-  color: #ffe51a;
   background-color: #fff;
-  padding: 2px 3px;
+  padding: 2px;
+  margin: 10px 0;
+  width: 30%;
 }
 
-#delete {
-  width: 46px;
+.cta-edit img {
+  width: 36px;
+  padding: 4px;
+  margin: 5px;
+  border: 1px solid black;
+  border-radius: 24%;
 }
 
 

@@ -12,12 +12,12 @@ export default {
 			.catch((error) => console.log(`Ajax error : ${error}`));
     },
 	
-	// getOneRecipe: function(id) {
-	// 	return axios
-	// 		.get(`${API_ENDPOINT}/recipe/${id}`)
-	// 		.then((res) => res.data)
-	// 		.catch((error) => console.log(`Ajax error : ${error}`));
-	// },
+	getOneRecipe: function(id) {
+		return axios
+			.get(`${API_ENDPOINT}/recipe/${id}`)
+			.then((res) => res.data)
+			.catch((error) => console.log(`Ajax error : ${error}`));
+	},
 
     // deleteRecipe: function(id) {
 	// 	return axios
