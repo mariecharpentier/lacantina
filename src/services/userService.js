@@ -25,12 +25,12 @@ export default {
 			.then((res) => res.data);
 	},
 
-	// createRecipe: function(recipe) {
-	// 	return axios
-	// 		.post(`${API_ENDPOINT}/recipe`, recipe)
-	// 		.then((res) => res.data)
-	// 		.catch((error) => console.log(`Ajax error : ${error}`));
-	// },
+	createRecipe: function(recipe) {
+		return axios
+			.post(`${API_ENDPOINT}/recipe`, recipe)
+			.then((res) => res.data)
+			.catch((error) => console.log(`Ajax error : ${error}`));
+	},
 
 	// editRecipe: function(recipe) {
 	// 	return axios

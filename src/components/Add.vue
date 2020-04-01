@@ -7,7 +7,7 @@
 
 <script>
 import Form from './Form.vue';
-// import userService from '../services/userService.js';
+import userService from '../services/userService.js';
 
 
 export default {
@@ -20,14 +20,14 @@ export default {
     return {};
   },
   methods: {
-    // send: function(new_recipe) {
-    //     userService
-    //         .createUser(new_recipe)
-    //         .then(res => {
-    //             this.$router.replace("/recipes");
-    //         })
-    //         .catch(error => console.log(error));
-    // }
+    send: function(new_recipe) {
+        userService
+            .createRecipe(new_recipe)
+            .then(res => {
+                this.$router.replace("/recipes");
+            })
+            .catch(error => console.log(error));
+    }
   },
 };
 </script>
