@@ -2,32 +2,31 @@
 	<div class="container">
 		<h2>Toutes nos recettes</h2>
 
-		<form class="filterform centered" @submit.prevent>
+		<!-- <form class="filterform centered" @submit.prevent>
 			<label for="filter">Filtrer par :</label>
 			<select name="filterBy" v-model="filterBy">
 				<option value="titre">Nom de la recette</option>
 				<option value="niveau">Difficulté</option>
 			</select>
 			<input type="search" placeholder="Tapez un nom..." v-model="search">
-		</form>
+		</form> -->
   
-		<!-- <form class="filterform" @submit.prevent>
+		<form class="filterform" @submit.prevent>
 			<label for="filter">Filtrer par :</label>
 			<input type="search" placeholder="Nom de la recette..." v-model="searchTitle">
 
-			<select name="filterBy" v-model="cooking-level">
+			<select name="filterBy" v-model="cookingLevel">
 				<option disabled value="">Niveau</option>
 				<option value="padawan">Padawan</option>
 				<option value="jedi">Jedi</option>
 				<option value="maitre">Maitre</option>
 			</select>
 
-			<input type="search" placeholder="Nombre de personnes" v-model="searchPax">
-			<input type="search" placeholder="Temps de préparation" v-model="searchTime">
+			<input type="number" min="1" max="15" placeholder="Nombre de personnes" v-model="searchPax">
+			<input type="number" min="10" max="500" step="5" placeholder="Temps de préparation (en minutes)" v-model="searchTime">
 
-			<input type="submit" placeholder="Rechercher" v-model="search">
-
-		</form> -->
+			<input type="submit" value="Rechercher" />
+		</form>
 
 		<div v-if="recipesList">
 			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove='removeRecipe'/>		
@@ -47,24 +46,47 @@ export default {
 	data: function(){
 		return {
 			recipesList: null,
-			search: '',
-			filterBy: 'titre',
-			// searchTitle: '',
-			// filterBy: '',
-			// searchPax: '',
-			// searchTime:''
+			filterBy: '',
+			searchTitle: '',
+			cookingLevel: '',
+			searchPax: '',
+			searchTime:''
 		}
 	},
 
-	computed: {
-		filteredList: function() {
+	// computed: {
+	// 	filteredList: function() {
+	// 		return this.recipesList.filter((recipe) => {
+	// 			const on_search = 
+	// 			this.filterBy == 'titre' ? (recipe.titre) : (recipe.niveau) 
+	// 			return on_search.includes(this.search);
+	// 		});
+	// 	}	
+	// },
+		computed: {
+			filteredList: function() {
 			return this.recipesList.filter((recipe) => {
-				const on_search = 
-				this.filterBy == 'titre' ? (recipe.titre) : (recipe.niveau) 
-				return on_search.includes(this.search);
+				let searchTitle = this.searchTitle;
+				let cookingLevel = this.cookingLevel;
+				let searchPax = this.searchPax;
+				let searchTime = this.searchTime;
+				if (recipe.titre != searchTitle || searchTitle !== "") {
+					return false		
+				}
+				if (recipe.niveau != cookingLevel || cookingLevel !== "") {
+					return false		
+				}
+				if (recipe.personnes != searchPax || searchPax  !== "") {
+					return false		
+				}
+				if (recipe.tempsPreparation != searchTime || searchTime !== "") {
+					return false		
+				} 
+				return true
+				
 			});
-		}	
-	},
+		}
+  },                       
 	created: function() {
 		userService.getAllRecipes().then((recipesList) => {
 			this.recipesList = recipesList;
@@ -75,9 +97,9 @@ export default {
 		removeRecipe: function(recipe) {
 			let index = this.recipesList.indexOf(recipe);
 			const deleted_recipe = this.recipesList.splice(index, 1)
-			let id = this.recipe.id;
+			let key = this.recipe.id;
 			console.log('teest')
-			userService.deleteRecipe(id)
+			userService.deleteRecipe(key)
 			.then((res) => {
 				if (res.error && res.error == 1){
 					this.alert('Erreur serveur : veuillez refaire l\'opération ultérieurement.').then(function() {
