@@ -41,9 +41,6 @@ export default {
 <style scoped>
 
 
-article {
-  background: url(../assets/circle.png);
-  background-size: 100%;
-}
+
 
 </style>
