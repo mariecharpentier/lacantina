@@ -73,7 +73,7 @@ export default {
   justify-content: stretch;
   align-items: flex-start;
   margin-bottom: 20px;
-  border: 2px solid #f9f679;
+  border: 1px solid #ffe91a;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
 }
 
@@ -101,7 +101,7 @@ export default {
 .cta-read {
   border-radius: 3px;
   text-align: center;
-  background-color: #f9f679;
+  background-color: #ffe91a;
   padding: 12px;
   margin-top: 20px;
   box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);

@@ -91,7 +91,7 @@ export default {
 <style scoped>
 
 .recipe-details {
-    border: 1px solid #f9f679;
+    border: 1px solid #ffe91a;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
     width: 70%;
 }
