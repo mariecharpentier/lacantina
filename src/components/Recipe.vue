@@ -89,7 +89,6 @@ export default {
 </script>
 
 <style scoped>
-
 .recipe-details {
     border: 1px solid #ffe91a;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
@@ -100,7 +99,6 @@ export default {
 .recipe-details article {
     padding: 0 30px;
 }
-
 
 .photo {
   width: 100%;
@@ -113,20 +111,27 @@ export default {
   color: #595a5a;
 }
 
+.recipe-introduction p {
+    font-weight: bold;
+}
+
 .recipe-details li img {
   width: 18px;
   margin-right: 5px;
 }
 
+.recipe-ingredients li{
+    border-left: 3px solid #ffe91a;
+    padding-left: 1em;
+}
+
 .recipe-steps li {
     list-style-type: decimal;
-    margin-bottom: 10px;
+    margin: 0 0 1em 1em;
 }
+
 .cta-edit {
     text-align: center;
 }
-
-
-
 
 </style>

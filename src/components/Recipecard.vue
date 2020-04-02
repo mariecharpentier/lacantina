@@ -121,18 +121,8 @@ export default {
 }
 
 .cta-edit {
-  margin-left: auto;
-  margin-right: 5px;
+  margin: 0 1em 1em auto;
   align-self: flex-end;
-}
-
-.cta-edit a {
-  box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
-  transition: all 0.3s ease 0s;
-}
-.cta-edit a:hover {
-  box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
-  transform: translateY(-3px);
 }
 
 .cta-edit img {
@@ -142,9 +132,9 @@ export default {
   border-radius: 24%;
   background-color: #c4ddda;
 }
+
 #delete {
   padding: 5px 7px;
 }
-
 
 </style>

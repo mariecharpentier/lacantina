@@ -95,7 +95,7 @@ export default {
 <style>
 .userform {
     margin: 2em auto;
-    width: 50%;
+    width: 90%;
     max-width: 520px;
     min-width: 390px;
 }
