@@ -153,9 +153,9 @@ export default {
     padding: 6px 20px;
     border-radius: 4px;
     outline: 0;
-    color: #0096D9;
+    color: #82bcbe;
     background-color: #fefefe;
-    border-color: #0096D9;
+    border-color: #82bcbe;
     text-align: center;
     text-decoration: none;
     cursor: pointer;

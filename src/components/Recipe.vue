@@ -94,6 +94,7 @@ export default {
     border: 1px solid #ffe91a;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
     width: 70%;
+    margin-bottom: 3em;
 }
 
 .recipe-details article {
