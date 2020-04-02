@@ -50,7 +50,7 @@
             </div>
 
             <div class="actions centered">
-                <button type="submit" class="btn">Envoyer</button>
+                <input type="submit" id="btn" value="Valider"/>
             </div>
 
         </form>
@@ -147,24 +147,23 @@ export default {
 	padding-left: 10px;
 }
 
-.btn {
-    position: relative;
-    min-width: 80px;
-    padding: 6px 20px;
-    border-radius: 4px;
-    outline: 0;
-    color: #82bcbe;
-    background-color: #fefefe;
-    border-color: #82bcbe;
+#btn {
+    border-radius: 3px;
     text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    font-size: 16px;
-    font-weight: 700;
+    background-color: #74b5bb;
+    padding: 12px;
+    margin-top: 20px;
+    box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
+    transition: all 0.3s ease 0s;
+    font-size: 20px;
+    line-height: 17px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+}
+#btn:hover {
+    box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
+    transform: translateY(-3px);
 }
 
 /* .add {
