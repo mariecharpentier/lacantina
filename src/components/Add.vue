@@ -32,7 +32,7 @@ export default {
 #add-view {
   border: 1px solid #82bcbe;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
-  width: 50%;
+  width: 60%;
   margin-bottom: 3em;
 }
 
