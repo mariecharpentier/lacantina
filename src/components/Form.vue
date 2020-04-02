@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label for="niveau">Niveau :</label>
-                <select name="niveau" v-model="recipe.niveau" required>
+                <select name="niveau" id="niveau" v-model="recipe.niveau" required>
                     <option disabled value=""></option>
                     <option value="padawan">Padawan</option>
                     <option value="jedi">Jedi</option>
@@ -35,13 +35,15 @@
 
             <div class="form-group">
                 <label for="ingredients">Ingrédients :</label>
-                <input type="text" id="ingredients" placeholder="Sel" v-model="recipe.ingredients" required>
-                <!-- <a href="#" class="add" title="Ajouter un ingrédient" @click.prevent="addIngredient">+</a> -->
+                <div id="ingredients">
+                    <!-- <AddIngredient :ingredients="ingredients" v-if="ingredients" @add="addIngredient"/> -->
+                </div>
+               
             </div>
 
             <div class="form-group">
-                <label for="etapes">Etapes :</label>
-                <input type="text" id="etapes" placeholder="Se laver les mains..." v-model="recipe.etapes" required>
+                <label for="etapes">Étapes :</label>
+                <textarea type="text" id="etapes" placeholder="Se laver les mains..." v-model="recipe.etapes" required/>
             </div>
 
             <div class="form-group">
@@ -59,9 +61,19 @@
 </template>
 
 <script>
+// import AddIngredient from './AddIngredient.vue';
 
 export default {
-    name: 'Form',  
+    name: 'Form', 
+    data: function() {
+        return {
+            ingredientsTab: [''],
+            ingredients: ['']
+        };
+    },
+    // components: {
+    //     AddIngredient
+    // },
     props: {
         recipe: {
             type: Object,
@@ -71,23 +83,29 @@ export default {
                     titre: '',
                     description: '',
                     niveau: '',
-                    personnes: '',
-                    tempsPreparation: '',
-                    ingredients: ['sel', 'poivre'],
+                    personnes: null,
+                    tempsPreparation: null,
+                    ingredients: [''],
                     etapes: ['lavage', 'coupage'],
                     photo: ''
                     };
                 }
-        }
+        },
+        
     },
     methods: {
-        // addIngredient: function(){
-        //     this.recipe.ingredients.push(["",""]);
-        // },
+        addIngredient: function () {
+            this.recipe.ingredients.push([]);
+        },
         send: function() {
             this.$emit("send", this.recipe);
         },
-        
+        // addInputIngredient: function () {
+        //     this.ingredients.push ([]);
+        // },
+        // removeInputIngredient: function(index) {
+        //     this.ingredients.splice(index, 1);
+        // },
   }
 };
 </script>
@@ -107,6 +125,16 @@ export default {
     justify-content: space-between;
 }
 
+.userform label {
+    display: inline-block;
+    min-width: 150px;
+    line-height: 40px;
+}
+
+#titre, #description, #personnes, #tempsPreparation, #etapes, #photo {
+    min-width: 200px;
+}
+
 .userform input {
     height: 40px;
     background-color: #f3f5f8;
@@ -114,15 +142,6 @@ export default {
     padding-right: 6px;
     padding-left: 10px;
     border: none;
-}
-.userform label {
-    display: inline-block;
-    min-width: 150px;
-    line-height: 40px;
-}
-
-.userform input {
-    min-width: 200px;
 }
 
 .userform input ~ span {
@@ -139,12 +158,32 @@ export default {
 	border: none;
 	background-color: #f3f5f8;
 	border-radius: 0;
-	width: 216px;
 	height: 40px;
 	line-height: 40px;
 	color: #2f2f2fba;
 	cursor: pointer;
 	padding-left: 10px;
+    width: 216px;
+}
+
+.userform textarea {
+    height: 40px;
+    background-color: #f3f5f8;
+    font-size: 14px;
+    padding-right: 6px;
+    padding-left: 10px;
+    border: none;
+    resize: none;
+}
+
+.form-group #ingredients input:first-of-type {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.form-group #ingredients select {
+    width: 60px;
+    margin-right: 10px;
 }
 
 #btn {
@@ -161,23 +200,12 @@ export default {
     color: #fff;
     font-weight: bold;
 }
+
 #btn:hover {
     box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
     transform: translateY(-3px);
 }
 
-/* .add {
-    width: 30px;
-    height: 30px;
-    margin-left: 15px;
-    border-radius: 50%;
-    background-color: ;
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-    line-height: 30px;
-    font-style: bold;
-    text-transform: uppercase;
-} */
+
 
 </style>
