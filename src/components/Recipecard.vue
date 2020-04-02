@@ -59,6 +59,7 @@ export default {
   methods: {
     onClickRemove: function() {
       this.$emit("remove", this.recipe);
+      this.$router.replace("/recipes");
     }
   }
   
@@ -72,7 +73,7 @@ export default {
   justify-content: stretch;
   align-items: flex-start;
   margin-bottom: 20px;
-  border: 3px solid #f9f679;
+  border: 2px solid #f9f679;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
 }
 

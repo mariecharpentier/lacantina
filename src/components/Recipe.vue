@@ -28,7 +28,7 @@
 
             <div class="cta-edit">
                 <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
-                <a href="#" title="Supprimer la recette" v-confirm="{ ok: onRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
+                <a href="#" title="Supprimer la recette" v-confirm="{ ok: onClickRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
                     <img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/>
                 </a>
             </div>      
@@ -46,8 +46,7 @@ export default {
         return {
             recipe: {},
         }
-    },
-           
+    },     
     created: function(){
         userService.getOneRecipe(this.$route.params.id).then(recipe => {
             this.recipe = recipe;
@@ -79,10 +78,10 @@ export default {
         }
     },
     methods: {
-        onRemove: function() {
-            this.$emit("remove", this.recipe)
-            .then.this.$router.replace("/recipes");
-        },
+        onClickRemove: function() {
+            this.$emit("remove", this.recipe);
+            this.$router.replace("/recipes");
+    }
   }
 	
    

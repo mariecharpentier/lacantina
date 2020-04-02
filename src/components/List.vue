@@ -101,17 +101,12 @@ export default {
 				const deleted_recipe = this.recipesList.splice(index, 1)
 				userService.deleteRecipe(recipe.id)
 				.then((res) => {
-					if (res){
-						if (res.data.error && res.data.error == 1){
-							this.alert('Erreur serveur : veuillez refaire l\'opération ultérieurement.').then(function() {
-								console.log('Closed');
-							});
-							console.log('Error: rollback')
-							this.recipesList.splice(index, 0, deleted_recipe.pop())
-						}
-					}
-				})   
-				.catch((error) => console.log(`Ajax error : ${error}`));
+					if (res !== undefined){
+						console.log(res)
+						this.recipesList.splice(index, 0, deleted_recipe.pop())
+						console.log(`La recette ${recipe.titre} a bien été supprimée.`)}
+				}, () => console.log(`Ajax error : la recette n'a pas été trouvée.`));
+				
 			}
 		}
 	}

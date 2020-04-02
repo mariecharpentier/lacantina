@@ -22,7 +22,8 @@ export default {
     deleteRecipe: function(id) {
 		return axios
 			.delete(`${API_ENDPOINT}/recipe/${id}`)
-			.then((res) => res.data);
+			.then((res) => res.data)
+			.catch((error) => console.log(`Ajax error : ${error}`))
 	},
 
 	// createRecipe: function(recipe) {
