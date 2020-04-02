@@ -72,7 +72,7 @@ export default {
   justify-content: stretch;
   align-items: flex-start;
   margin-bottom: 20px;
-  border: 10px solid #f9f679;
+  border: 3px solid #f9f679;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
 }
 
