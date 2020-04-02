@@ -16,9 +16,9 @@
             </div>
         </section>
         <div class="cta-edit">
-            <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
+            <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="../assets/edit.png"/></router-link>
             <a href="#" title="Supprimer la recette" v-confirm="{ ok: onClickRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
-              <img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/>
+              <img src="../assets/delete.png" id="delete"/>
             </a>
         </div>
     </div>
@@ -104,6 +104,8 @@ export default {
   background-color: #f9f679;
   padding: 12px;
   margin-top: 20px;
+  box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
+  transition: all 0.3s ease 0s;
 }
 
 .cta-read a {
@@ -113,17 +115,35 @@ export default {
   font-weight: bold;
 }
 
+.cta-read:hover {
+  box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
+  transform: translateY(-3px);
+}
+
 .cta-edit {
   margin-left: auto;
   margin-right: 5px;
   align-self: flex-end;
 }
+
+.cta-edit a {
+  box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
+  transition: all 0.3s ease 0s;
+}
+.cta-edit a:hover {
+  box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
+  transform: translateY(-3px);
+}
+
 .cta-edit img {
-  width: 36px;
-  padding: 4px;
+  width: 40px;
+  padding: 7px;
   margin: 5px;
-  border: 1px solid black;
   border-radius: 24%;
+  background-color: #c4ddda;
+}
+#delete {
+  padding: 5px 7px;
 }
 
 

@@ -26,12 +26,12 @@
                 </ul>
             </article>
 
-            <div class="cta-edit">
-                <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="https://img.icons8.com/wired/64/000000/edit.png"/></router-link>
+           <div class="cta-edit">
+                <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="../assets/edit.png"/></router-link>
                 <a href="#" title="Supprimer la recette" v-confirm="{ ok: onClickRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
-                    <img src="https://img.icons8.com/wired/64/000000/trash.png" id="delete"/>
+                    <img src="../assets/delete.png" id="delete"/>
                 </a>
-            </div>      
+            </div> 
         </section>
     </div>
 </template>
@@ -91,7 +91,7 @@ export default {
 <style scoped>
 
 .recipe-details {
-    border: 10px solid #f9f679;
+    border: 1px solid #f9f679;
     box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
     width: 70%;
 }
@@ -125,13 +125,6 @@ export default {
     text-align: center;
 }
 
-.cta-edit img {
-  width: 36px;
-  padding: 4px;
-  margin: 5px;
-  border: 1px solid black;
-  border-radius: 24%;
-}
 
 
 
