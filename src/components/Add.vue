@@ -1,7 +1,7 @@
 <template>
-    <div class="container centered">
-		<h2>Ajouter une recette</h2>
-    <Form @send="send" />
+    <div class="container">
+      <h2>Ajouter une recette</h2>
+      <Form @send="send" />
     </div>
 </template>
 
@@ -19,10 +19,10 @@ export default {
     send: function(new_recipe) {
       userService
           .createRecipe(new_recipe)
-          .then(res => {
-              this.$router.replace("/recipes");
-          })
-          .catch(error => console.log(error));
+          .then(() => {
+              // this.$router.replace("/recipes");
+              console.log(new_recipe)
+          }, () => console.log('test'));
     }
   },
 };

@@ -99,7 +99,7 @@ export default {
 }
 
 .cta-read {
-  border-radius: 35px;
+  border-radius: 3px;
   text-align: center;
   background-color: #f9f679;
   padding: 12px;

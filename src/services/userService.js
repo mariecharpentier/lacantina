@@ -26,18 +26,18 @@ export default {
 			.catch((error) => console.log(`Ajax error : ${error}`))
 	},
 
-	// createRecipe: function(recipe) {
-	// 	return axios
-	// 		.post(`${API_ENDPOINT}/recipe`, recipe)
-	// 		.then((res) => res.data)
-	// 		.catch((error) => console.log(`Ajax error : ${error}`));
-	// },
+	createRecipe: function(recipe) {
+		return axios
+			.post(`${API_ENDPOINT}/recipe/`, recipe)
+			.then((res) => res.data)
+			.catch((error) => console.log(`Ajax error : ${error}`));
+	},
 
-	// editRecipe: function(recipe) {
-	// 	return axios
-	// 	.put(`${API_ENDPOINT}/recipe/${id}`, recipe)
-	// 	.then((res) => res.data)
-	// 	.catch((error) => console.log(`Ajax error : ${error}`));
-	// }
+	editRecipe: function(recipe) {
+		return axios
+		.put(`${API_ENDPOINT}/recipe/${recipe.id}`, recipe)
+		.then((res) => res.data)
+		.catch((error) => console.log(`Ajax error : ${error}`));
+	}
 
 }

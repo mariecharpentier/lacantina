@@ -1,6 +1,6 @@
 <template>
-  <div class="container centered">
-    <h2>Modifier la recette</h2>
+  <div class="container">
+    <h2>Améliorer une recette</h2>
     <Form :recipe="recipe" v-if="recipe" @send="send"/>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: "Edit",
   data: function() {
     return {
-          recipe: null
+        recipe: null
       };
   },
   components: {
@@ -21,15 +21,15 @@ export default {
   },
   methods: {
     send: function(recipe) {
-      userService.editRecipe(recipe).then(data => {
-            this.recipe = data;
-      });
+      userService.editRecipe(recipe).then(() => {
+        this.$router.replace("/recipes");
+      }, () => console.log('La modification n\'a pas été prise en compte.'));
     }
   },
   created: function(){
-      userService.getOneRecipe(this.$route.params.id).then(recipe => {
-          this.recipe = recipe;
-      })
+    userService.getOneRecipe(this.$route.params.id).then(recipe => {
+      this.recipe = recipe;
+    })
   }  
 };
 </script>

@@ -1,47 +1,47 @@
 <template>
-    <div class="container centered">
+    <div class="container">
 
         <form class="userform" @submit.prevent="send">
 
             <div class="form-group">
                 <label for="titre">Nom de la recette :</label>
-                <input type="text" id="titre" placeholder="Nom de la recette" v-model="recipe.titre">
+                <input type="text" id="titre" placeholder="Nom de la recette" v-model="recipe.titre" required>
             </div>
 
             <div class="form-group">
                 <label for="description">Description :</label>
-                <input type="text" id="description" placeholder="Présentez votre recette..." v-model="recipe.description">
+                <input type="text" id="description" placeholder="Présentez votre recette..." v-model="recipe.description" required>
             </div>
 
             <div class="form-group">
-                <input type="radio" name="level" id="padawan" value="padawan" v-model="recipe.niveau">
-                <label for="padawan">Padawan</label>
-
-                <input type="radio" name="level" id="jedi" value="jedi" v-model="recipe.niveau">
-                <label for="jedi">Jedi</label>
-
-                <input type="radio" name="level" id="maitre" value="maitre" v-model="recipe.niveau">
-                <label for="maitre">Maitre</label>
+                <label for="niveau">Niveau :</label>
+                <select name="niveau" v-model="recipe.niveau" required>
+                    <option disabled value=""></option>
+                    <option value="padawan">Padawan</option>
+                    <option value="jedi">Jedi</option>
+                    <option value="maitre">Maitre</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="personnes">Nombre de personnes :</label>
-                <input type="text" id="personnes" placeholder="4" v-model="recipe.personnes">
+                <input type="number" min="1" max="20" id="personnes" placeholder="4" v-model="recipe.personnes" required>
             </div>
 
             <div class="form-group">
-                <label for="tempsPreparation">Temps de préparation :</label>
-                <input type="text" id="tempsPreparation" placeholder="30" v-model="recipe.tempsPreparation">
+                <label for="tempsPreparation">Temps de préparation maximum :</label>
+                <input type="number" min="10" max="500" step="5" id="tempsPreparation" placeholder="30 minutes" v-model="recipe.tempsPreparation" required>
             </div>
 
             <div class="form-group">
                 <label for="ingredients">Ingrédients :</label>
-                <input type="text" id="ingredients" placeholder="Sel" v-model="recipe.ingredients">
+                <input type="text" id="ingredients" placeholder="Sel" v-model="recipe.ingredients" required>
+                <!-- <a href="#" class="add" title="Ajouter un ingrédient" @click.prevent="addIngredient">+</a> -->
             </div>
 
             <div class="form-group">
                 <label for="etapes">Etapes :</label>
-                <input type="text" id="etapes" placeholder="Se laver les mains..." v-model="recipe.etapes">
+                <input type="text" id="etapes" placeholder="Se laver les mains..." v-model="recipe.etapes" required>
             </div>
 
             <div class="form-group">
@@ -49,7 +49,7 @@
                 <input type="url" id="photo" placeholder="http://" v-model="recipe.photo">
             </div>
 
-            <div class="actions">
+            <div class="actions centered">
                 <button type="submit" class="btn">Envoyer</button>
             </div>
 
@@ -63,38 +63,48 @@
 export default {
     name: 'Form',  
     props: {
-        user: {
+        recipe: {
             type: Object,
             default: function() {
-            return {
-                id: null,
-                titre: '',
-                description: '',
-                niveau: '',
-                personnes: '',
-                tempsPreparation: '',
-                ingredients: '',
-                etapes: '',
-                photo: ''
-                };
-            }
+                return {
+                    id: null,
+                    titre: '',
+                    description: '',
+                    niveau: '',
+                    personnes: '',
+                    tempsPreparation: '',
+                    ingredients: ['sel', 'poivre'],
+                    etapes: ['lavage', 'coupage'],
+                    photo: ''
+                    };
+                }
         }
     },
     methods: {
+        // addIngredient: function(){
+        //     this.recipe.ingredients.push(["",""]);
+        // },
         send: function() {
-        this.$emit("send", this.recipe);
-    }
+            this.$emit("send", this.recipe);
+        },
+        
   }
 };
 </script>
 
 <style>
 .userform {
-    margin: 2em 0;
+    margin: 2em auto;
+    width: 50%;
+    max-width: 520px;
+    min-width: 390px;
 }
 
 .userform .form-group {
     margin-bottom: 1.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .userform input {
@@ -107,20 +117,12 @@ export default {
 }
 .userform label {
     display: inline-block;
-    vertical-align: middle;
     min-width: 150px;
-    text-align: right;
+    line-height: 40px;
 }
 
-.userform input[type='radio'] + label {
-    min-width: 0;
-    text-align: left;
-    cursor: pointer;
-}
-
-.userform input:not([type=radio]) {
+.userform input {
     min-width: 200px;
-    vertical-align: middle;
 }
 
 .userform input ~ span {
@@ -131,6 +133,18 @@ export default {
 
 .userform .input-error {
     border: 1px solid red;
+}
+
+.userform select {
+	border: none;
+	background-color: #f3f5f8;
+	border-radius: 0;
+	width: 216px;
+	height: 40px;
+	line-height: 40px;
+	color: #2f2f2fba;
+	cursor: pointer;
+	padding-left: 10px;
 }
 
 .btn {
@@ -152,5 +166,19 @@ export default {
     font-size: 16px;
     font-weight: 700;
 }
+
+/* .add {
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    border-radius: 50%;
+    background-color: ;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-style: bold;
+    text-transform: uppercase;
+} */
 
 </style>
