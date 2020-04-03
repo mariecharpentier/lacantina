@@ -1,6 +1,6 @@
 <template>
   <div class="container edit-view">
-    <h2>Améliorer une recette</h2>
+    <h2>Améliorer la recette</h2>
     <Form :recipe="recipe" v-if="recipe" @send="send"/>
   </div>
 </template>
