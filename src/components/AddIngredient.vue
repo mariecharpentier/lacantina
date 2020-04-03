@@ -30,8 +30,7 @@ export default {
           name: ''
         }
       ],
-      ingredients: [''],
-      newIngredients: ['']
+      ingredients: [['']],
     }
   },
   methods: {  
@@ -41,11 +40,9 @@ export default {
         unit: '',
         name: ''
       })
-      // let newIngredients = this.ingredientsTab.values()
-      // console.log(newIngredients)
-      // let newArray = array.filter(function(key) {
-      //   return value;
-      // });
+    
+      console.log(this.ingredientsTab)
+
     },
     deleteIngredientForm: function(index) {
       this.ingredientsTab.splice(index, 1)
