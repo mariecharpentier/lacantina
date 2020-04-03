@@ -28,7 +28,7 @@ export default {
 
 	createRecipe: function(recipe) {
 		return axios
-			.post(`${API_ENDPOINT}/recipe/`, recipe)
+			.post(`${API_ENDPOINT}/recipes/`, recipe)
 			.then((res) => res.data)
 			.catch((error) => console.log(`Ajax error : ${error}`));
 	},
