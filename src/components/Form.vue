@@ -66,7 +66,8 @@ export default {
     name: 'Form', 
     data: function() {
         return {
-            ingredients: ['']
+            ingredients: [''],
+            newIngredients: [''],
         };
     },
     components: {
@@ -77,13 +78,13 @@ export default {
             type: Object,
             default: function() {
                 return {
-                    id: null,
+                    // id: null,
                     titre: '',
                     description: '',
                     niveau: '',
                     personnes: null,
                     tempsPreparation: null,
-                    ingredients: ['ok'],
+                    ingredients: [''],
                     etapes: ['lavage', 'coupage'],
                     photo: ''
                     };
