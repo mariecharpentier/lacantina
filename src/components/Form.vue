@@ -190,12 +190,12 @@ export default {
     border-radius: 3px;
     text-align: center;
     background-color: #74b5bb;
-    padding: 12px;
+    padding: 24px;
     margin-top: 20px;
     box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
     transition: all 0.3s ease 0s;
     font-size: 20px;
-    line-height: 17px;
+    line-height: 2px;
     text-transform: uppercase;
     color: #fff;
     font-weight: bold;
