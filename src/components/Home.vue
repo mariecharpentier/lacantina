@@ -38,9 +38,8 @@ export default {
 						this.recipesList.splice(index, 0, deleted_recipe.pop())
 						console.log(`La recette ${recipe.titre} a bien été supprimée.`)}
 				}, () => console.log(`Ajax error : la recette n'a pas été trouvée.`));
-				
 			}
-		}
+		},
   },
    created: function() {
       userService.getAllRecipes().then((recipesList) => {

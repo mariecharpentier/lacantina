@@ -1,8 +1,8 @@
 <template>
 <div class="container">
     <div class="recipecard">
-        <img :src="recipe.photo || DEFAULT_PHOTO" :alt="`Photo de ${recipe.titre}`" class="photo">
-        <section>
+        <img :src="recipe.photo || DEFAULT_PHOTO" :alt="`Photo de ${recipe.titre}`" class="photo" v-on:click="goToRecipe">
+          <section v-on:click="goToRecipe">
             <h3>{{recipe.titre}}</h3>
              <ul>
                 <li><img src="https://img.icons8.com/wired/64/000000/hourglass.png"/>Temps de préparation : {{timePrep}}</li>
@@ -11,10 +11,11 @@
             </ul>
             <p class="description">{{recipe.description}}</p>
             
-            <div class="cta-read">
-              <router-link :to="`/recipe/${recipe.id}`">Découvrir la recette</router-link>
+            <div class="cta-read">Découvrir la recette
+              <!-- <router-link :to="`/recipe/${recipe.id}`">Découvrir la recette</router-link> -->
             </div>
-        </section>
+          </section>
+
         <div class="cta-edit">
             <router-link :to="`/edit/${recipe.id}`" title="Améliorer la recette"><img src="../assets/edit.png"/></router-link>
             <a href="#" title="Supprimer la recette" v-confirm="{ ok: onClickRemove, cancel: null, message: 'Voulez-vous vraiment supprimer cette recette ?' }">
@@ -60,8 +61,11 @@ export default {
     onClickRemove: function() {
       this.$emit("remove", this.recipe);
       this.$router.replace("/recipes");
-    }
-  }
+    },
+    goToRecipe: function() {
+      this.$router.replace(`/recipe/${this.recipe.id}`)
+    }   
+  } 
   
 }
 </script>
@@ -75,6 +79,7 @@ export default {
   margin-bottom: 20px;
   border: 1px solid #ffe91a;
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.3); 
+  cursor: pointer;
 }
 
 .recipecard section {
@@ -106,6 +111,10 @@ export default {
   margin-top: 20px;
   box-shadow: 0px 8px 15px rgba(136, 156, 148, 0.4);
   transition: all 0.3s ease 0s;
+  font-size: 19px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
 }
 
 .cta-read a {
