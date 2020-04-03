@@ -1,36 +1,33 @@
 <template>
 	<div class="container">
 		<h2>Toutes nos recettes</h2>
-
-		<form class="filterform centered" @submit.prevent>
-			<label for="filter">Filtrer par :</label>
-			<select name="filterBy" v-model="filterBy">
-				<option value="titre">Nom de la recette</option>
-				<option value="niveau">Difficulté</option>
-			</select>
-			<input type="search" placeholder="Tapez un nom..." v-model="search">
-		</form>
   
-		<!-- <form class="filterform" @submit.prevent>
+		<form class="filterform" @submit.prevent>
 			<label for="filter">Filtrer par :</label>
 			<input type="search" placeholder="Nom de la recette..." v-model="searchTitle">
 
 			<select name="filterBy" v-model="cookingLevel">
-				<option disabled value="">Niveau</option>
+				<option value="" selected>Tous niveaux</option>
 				<option value="padawan">Padawan</option>
 				<option value="jedi">Jedi</option>
 				<option value="maitre">Maitre</option>
 			</select>
 
-			<input type="number" min="1" max="15" placeholder="Nombre de personnes" v-model="searchPax">
-			<input type="number" min="10" max="500" step="5" placeholder="Temps de préparation (en minutes)" v-model="searchTime">
+			<select name="filterBy" v-model="searchPax">
+				<option value="" selected>Nombre de personnes</option>
+				<option value="option 1">de 1 à 4 personnes</option>
+				<option value="option 2">de 5 à 10 personnes</option>
+				<option value="option 3">Plus de 10 personnes</option>
+			</select>
 
-			<input type="reset" value="Reset" />
-		</form> -->
+			<input type="number" min="10" max="500" step="5" placeholder="Temps de préparation minimum (en minutes)" v-model="searchTime">
+
+		</form>
 
 		<div v-if="recipesList">
 			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove='removeRecipe'/>		
 		</div>
+		
 	</div>
 </template>
 
@@ -46,48 +43,54 @@ export default {
 	data: function(){
 		return {
 			recipesList: null,
-			filterBy: '',
-			search: ''
-			// searchTitle: '',
-			// cookingLevel: '',
-			// searchPax: '',
-			// searchTime:''
+			searchTitle: '',
+			cookingLevel: '',
+			searchPax: '',
+			searchTime:''
 		}
 	},
 
-	computed: {
-		filteredList: function() {
+		computed: {
+			filteredList: function() {
 			return this.recipesList.filter((recipe) => {
-				const on_search = 
-				this.filterBy == 'titre' ? (recipe.titre) : (recipe.niveau) 
-				return on_search.includes(this.search);
-			});
-		}	
-	},
-		// computed: {
-		// 	filteredList: function() {
-		// 	return this.recipesList.filter((recipe) => {
-		// 		let searchTitle = this.searchTitle;
-		// 		let cookingLevel = this.cookingLevel;
-		// 		let searchPax = this.searchPax;
-		// 		let searchTime = this.searchTime;
-		// 		if ((recipe.titre.includes(searchTitle == false)) || searchTitle !== "") {
-		// 			return false		
-		// 		}
-		// 		if (recipe.niveau !== cookingLevel || cookingLevel !== "") {
-		// 			return false		
-		// 		}
-		// 		if (recipe.personnes !== searchPax || searchPax  !== "") {
-		// 			return false		
-		// 		}
-		// 		if (recipe.tempsPreparation > searchTime || searchTime !== "") {
-		// 			return false		
-		// 		} 
-		// 		return true
+				let title = recipe.titre.toLowerCase();
+				let difficulty = recipe.niveau
+				let people = recipe.personnes
+				let time = recipe.tempsPreparation
+
+				if ((title.includes(this.searchTitle.toLowerCase()) == false)) {
+					return false		
+				}
+				if (this.cookingLevel && this.cookingLevel !== 'Tous niveaux' && difficulty !== this.cookingLevel) {
+					return false		
+				} 
+				console.log(this.searchPax)
+				if (this.searchPax) {
+					if (this.searchPax == "option 1") {
+						if (people > 4) {
+							return false		
+						}
+					}
+					if (this.searchPax == "option 2") {
+						if (people < 4 && people > 10) {
+							return false		
+						}
+					}
+					if (this.searchPax == "option 3") {
+						if (people < 10) {
+							return false		
+						}
+					}
+				}
+				if (this.searchTime && time > this.searchTime) {
+					return false		
+				} 
+				return true
 				
-		// 	});
-		// }
-//   },                       
+			});
+		}
+
+  },                       
 	created: function() {
 		userService.getAllRecipes().then((recipesList) => {
 			this.recipesList = recipesList;
@@ -109,6 +112,7 @@ export default {
 				
 			}
 		}
+		
 	}
 	};
 </script>
@@ -116,7 +120,7 @@ export default {
 <style>
 .filterform {
 	margin: 2em auto;
-	width: 700px;
+	width: 80%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -124,7 +128,7 @@ export default {
 
 .filterform label {
 	width: 18%;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 40px;
 }
 
@@ -132,22 +136,31 @@ export default {
 	width: 100%;
     height: 40px;
     background-color: #f3f5f8;
-    font-size: 14px;
+    font-size: 12px;
     padding-right: 6px;
 	padding-left: 10px;
     border: none;
+	margin-right: 10px;
 }
 
+.filterform input[type=number]{
+	width: 100%;
+}
 .filterform select {
 	border: none;
 	background-color: #f3f5f8;
 	border-radius: 0;
-	width: 30%;
+	width: 50%;
 	height: 40px;
 	line-height: 40px;
 	color: #2f2f2f;
 	cursor: pointer;
 	margin-right: 10px;
 	padding-left: 10px;
+	font-size: 12px;
+}
+
+.filterform select option {
+	font-size: 12px;
 }
 </style>
