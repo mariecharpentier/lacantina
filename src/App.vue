@@ -86,8 +86,9 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color:#2E2E2E;
+  color:#7d7575;
   text-align: center;
+  font-weight: bold;
 }
 
 .dg-btn--cancel {
