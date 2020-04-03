@@ -36,9 +36,8 @@
             <div class="form-group">
                 <label for="ingredients">Ingrédients :</label>
                 <div id="ingredients">
-                    <!-- <AddIngredient :ingredients="ingredients" v-if="ingredients" @add="addIngredient"/> -->
+                    <AddIngredient :ingredients="ingredients" v-if="ingredients" @add="addIngredient"/>
                 </div>
-               
             </div>
 
             <div class="form-group">
@@ -61,19 +60,18 @@
 </template>
 
 <script>
-// import AddIngredient from './AddIngredient.vue';
+import AddIngredient from './AddIngredient.vue';
 
 export default {
     name: 'Form', 
     data: function() {
         return {
-            ingredientsTab: [''],
             ingredients: ['']
         };
     },
-    // components: {
-    //     AddIngredient
-    // },
+    components: {
+        AddIngredient
+    },
     props: {
         recipe: {
             type: Object,
@@ -85,7 +83,7 @@ export default {
                     niveau: '',
                     personnes: null,
                     tempsPreparation: null,
-                    ingredients: [''],
+                    ingredients: ['ok'],
                     etapes: ['lavage', 'coupage'],
                     photo: ''
                     };
@@ -100,12 +98,6 @@ export default {
         send: function() {
             this.$emit("send", this.recipe);
         },
-        // addInputIngredient: function () {
-        //     this.ingredients.push ([]);
-        // },
-        // removeInputIngredient: function(index) {
-        //     this.ingredients.splice(index, 1);
-        // },
   }
 };
 </script>
@@ -144,11 +136,11 @@ export default {
     border: none;
 }
 
-.userform input ~ span {
+/* .userform input ~ span {
     display: block;
     font-size: 0.8em;
     color: red;
-}
+} */
 
 .userform .input-error {
     border: 1px solid red;
@@ -174,16 +166,6 @@ export default {
     padding-left: 10px;
     border: none;
     resize: none;
-}
-
-.form-group #ingredients input:first-of-type {
-    width: 40px;
-    margin-right: 10px;
-}
-
-.form-group #ingredients select {
-    width: 60px;
-    margin-right: 10px;
 }
 
 #btn {

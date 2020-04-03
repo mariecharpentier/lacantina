@@ -6,9 +6,8 @@
 </template>
 
 <script>
-import Form from './Form.vue';
 import userService from '../services/userService.js';
-
+import Form from './Form.vue';
 
 export default {
   name: "Add",
@@ -16,15 +15,17 @@ export default {
     Form
   },
   methods: {
-    send: function(new_recipe) {
+    send: function(recipe) {
       userService
-          .createRecipe(new_recipe)
+          .createRecipe(recipe)
           .then(() => {
               // this.$router.replace("/recipes");
-              console.log(new_recipe)
+              console.log(recipe)
           }, () => console.log('test'));
     }
   },
+ 
+
 };
 </script>
 

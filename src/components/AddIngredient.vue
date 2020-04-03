@@ -1,55 +1,49 @@
 <template>
   <div class="addIngredient">
-    <div class="form-group" v-for="(ingredient, index) in ingredientsTab" :key="index">
-        <input type="number" min="1" placeholder="1" v-model="ingredient[0]" required/>
-        <select name="mesure" v-model="ingredient[1]" required>
-            <option value="unite" disabled>unité</option>
-            <option value="gr">gr</option>
-            <option value="dl">dl</option>
-            <option value="cl">cl</option>
-        </select>        
-        <input type="text" placeholder="de lait" v-model="ingredient[2]" required v-on="getFullIngredient(ingredientsTab)"/>
-        <a class="removeInput" :key="index" @click.prevent="removeInputIngredient" title="Enlever cet ingrédient"><img src="https://img.icons8.com/flat_round/64/000000/delete-sign.png"/></a>
-    </div>
-    <a class="addInput" @click.prevent="addInputIngredient" title="Ajouter un ingrédient"><img src="https://img.icons8.com/flat_round/64/000000/plus.png"/></a>
+    <li class="form-group" v-for="(ingredient, index) in ingredientsTab" :key="index">
+      <input type="number" min="1" placeholder="1" v-model="ingredient.quantity" required/>
+      <select name="mesure" v-model="ingredient.unit" required>
+          <option value="unite" disabled>unité</option>
+          <option value="gr">gr</option>
+          <option value="dl">dl</option>
+          <option value="cl">cl</option>
+      </select>        
+      <input type="text" placeholder="de lait" v-model="ingredient.name" required/>
+      <img @click="deleteIngredientForm(index)" src="../assets/close.svg" alt="close" class="close">
+    </li>
+    <li class="addBtn">
+    <span>Ajouter un ingrédient</span>
+    <img src="../assets/add.svg" class="addInput" title="Ajouter un ingrédient" @click="addIngredientForm"/>
+    </li>
   </div>
 </template>
 
 <script>
 export default {
-    name: "addIngredient",
-    data: function() {
-      return {
-        ingredients: [''],
-        ingredientsTab: [['']]
-      }
-    },
-    props: {
-      recipe: {
-        type: Object,
-        default: function(){
-          return {
-            ingredientsTab: ['']
-          };  
+  name: "addIngredient",
+  data: function() {
+    return {
+      ingredientsTab: [
+        {
+          quantity: '',
+          unit: '',
+          name: ''
         }
-      },
- 
+      ],
+      ingredients: ['']
+    }
   },
-  methods: {
-    getFullIngredient: function (ingredientsTab) {
-      this.ingredientsTab.push()
-      ingredientsTab = this.ingredientsTab.join().replace(',', '')
-      ingredientsTab = ingredientsTab.replace(',', ' ')
-      console.log(ingredientsTab)
+  methods: {  
+    addIngredientForm: function() {
+      this.ingredientsTab.push({
+        quantity: '',
+        unit: '',
+        name: ''
+      })
+      console.log(this.ingredientsTab)
     },
-    removeInputIngredient: function(index) {
-      if (index > 1) {
-        this.recipe.ingredients.splice(index, 1);
-      }
-      console.log(index)
-    },
-    addInputIngredient: function() {
-      this.recipe.ingredients.push();
+    deleteIngredientForm: function(index) {
+      this.ingredientsTab.splice(index, 1)
     }
  
   }
@@ -59,18 +53,48 @@ export default {
 .addIngredient .form-group{
   margin-top: 10px;
   margin-bottom: 0!important;
+  position: relative;
+}
+
+.form-group #ingredients input:first-of-type {
+    width: 35px;
+    margin-right: 5px;
+}
+.form-group #ingredients select {
+    width: 50px;
+    height: 42px;
+    margin-right: 5px;
+}
+.form-group #ingredients input:last-of-type {
+    width: 200px;
+}
+
+.addBtn {
+  position: relative;
+  margin-top: 10px;
+  height: 40px;
+}
+.addIngredient .addBtn span {
+  font-size: 14px;
+  font-style: italic;
+  position: absolute;
+  top: 0;
+  right: 50px;
+  color: #74b5bb;
+}
+.addIngredient .addInput {
+  width: 30px;
+  position: absolute;
+  top: -7px;
+  right: 5px;
 }
 
 
-.addInput img {
-  width: 30px;
-  margin: 3px;
-  line-height: 40px;
-}
-
-.removeInput img{
-  width: 30px;
-  margin: 3px;
-  line-height: 40px;
+.addIngredient .close {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 10px;
+  color: #3c70bf;
+  width: 24px;
 }
 </style>
