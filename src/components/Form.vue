@@ -66,8 +66,7 @@ export default {
     name: 'Form', 
     data: function() {
         return {
-            ingredients: [''],
-            newIngredients: [''],
+            ingredients: [['']]
         };
     },
     components: {
@@ -78,13 +77,12 @@ export default {
             type: Object,
             default: function() {
                 return {
-                    // id: null,
                     titre: '',
                     description: '',
                     niveau: '',
                     personnes: null,
                     tempsPreparation: null,
-                    ingredients: [''],
+                    ingredients: [['']],
                     etapes: ['lavage', 'coupage'],
                     photo: ''
                     };
@@ -92,11 +90,15 @@ export default {
         },
         
     },
+
     methods: {
         addIngredient: function () {
-            this.recipe.ingredients.push([]);
+            this.recipe.ingredients.push();
         },
         send: function() {
+            this.recipe.personnes = Number(this.recipe.personnes)
+            this.recipe.tempsPreparation = Number(this.recipe.tempsPreparation)
+            
             this.$emit("send", this.recipe);
         },
   }
