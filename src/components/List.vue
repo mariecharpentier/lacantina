@@ -27,7 +27,9 @@
 		<div v-if="recipesList">
 			<Recipecard class="recipe-card" v-for="recipe in filteredList" :recipe="recipe" :key="recipe.id" @remove='removeRecipe'/>		
 		</div>
-		
+		<div v-else>
+			<h3>Désolé, il n'y a pas de recette correspondant à ces critères...</h3>
+		</div>
 	</div>
 </template>
 
@@ -85,11 +87,11 @@ export default {
 				if (this.searchTime && time > this.searchTime) {
 					return false		
 				} 
+				
 				return true
 				
 			});
 		}
-
   },                       
 	created: function() {
 		userService.getAllRecipes().then((recipesList) => {
@@ -111,8 +113,7 @@ export default {
 				}, () => console.log(`Ajax error : la recette n'a pas été trouvée.`));
 				
 			}
-		}
-		
+		},		
 	}
 	};
 </script>
@@ -162,5 +163,9 @@ export default {
 
 .filterform select option {
 	font-size: 12px;
+}
+
+.hidden {
+	display: none;
 }
 </style>
