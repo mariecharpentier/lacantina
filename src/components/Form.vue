@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label for="description">Description :</label>
-        <input
+         <textarea
           type="text"
           id="description"
           placeholder="Présentez votre recette..."
@@ -61,14 +61,14 @@
       </div>
 
       <div class="form-group">
-        <label for="ingredients">Ingrédients :</label>
+        <label for="ingredients" class="labelforIngredient">Ingrédients :</label>
         <div id="ingredients">
           <AddIngredient :ingredients="ingredients" v-if="ingredients" @add="addIngredient" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="etapes">Étapes :</label>
+        <label for="etapes" class="labelforEtapes">Étapes :</label>
         <textarea
           type="text"
           id="etapes"
@@ -79,7 +79,7 @@
       </div>
 
       <div class="form-group">
-        <label for="photo">Photo :</label>
+        <label for="photo" class="labelforPhoto">Photo :</label>
         <input type="url" id="photo" placeholder="http://" v-model="recipe.photo" />
       </div>
 
@@ -153,8 +153,14 @@ export default {
 
 .searchform label {
   display: inline-block;
-  min-width: 150px;
+  min-width: 250px;
   line-height: 40px;
+}
+
+.searchform .labelforIngredient,
+.searchform .labelforEtapes,
+.searchform .labelforPhoto {
+  min-width: 180px;
 }
 
 #titre,
@@ -162,48 +168,39 @@ export default {
 #personnes,
 #tempsPreparation,
 #etapes,
-#photo {
+#photo,
+#niveau {
   min-width: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  background-color: #f3f5f8;
+  border: none;
 }
 
 .searchform input {
   height: 40px;
-  background-color: #f3f5f8;
-  font-size: 14px;
+  width: 60%;
   padding-right: 6px;
   padding-left: 10px;
-  border: none;
 }
-
-/* .searchform input ~ span {
-    display: block;
-    font-size: 0.8em;
-    color: red;
-} */
 
 .searchform .input-error {
   border: 1px solid red;
 }
 
 .searchform select {
-  border: none;
-  background-color: #f3f5f8;
   border-radius: 0;
   height: 40px;
   line-height: 40px;
-  color: #2f2f2fba;
   cursor: pointer;
   padding-left: 10px;
-  width: 216px;
+  width: 60%;
 }
 
 .searchform textarea {
   height: 40px;
-  background-color: #f3f5f8;
-  font-size: 14px;
-  padding-right: 6px;
-  padding-left: 10px;
-  border: none;
+  width: 60%;
+  padding: 8px 6px 30px 10px;
   resize: none;
 }
 
@@ -217,6 +214,7 @@ export default {
   transition: all 0.3s ease 0s;
   font-size: 20px;
   line-height: 2px;
+  width: 40%;
   text-transform: uppercase;
   color: #fff;
   font-weight: bold;
@@ -229,7 +227,7 @@ export default {
 
 /********************RESPONSIVE******************************/
 
-@media screen and (max-width: 889px) {
+@media screen and (max-width: 880px) {
   .searchform .form-group {
     display: flex;
     flex-direction: column;
@@ -239,5 +237,14 @@ export default {
   .searchform select {
     width: 100%;
   }
+
+  .searchform input {
+    width: 97%;
+  }
+
+  .searchform textarea {
+    width: 97%;
+  }
+
 }
 </style>

@@ -49,4 +49,24 @@ export default {
 .edit-view h2 {
   color: #82bcbe;
 }
+
+
+/********************RESPONSIVE******************************/
+
+@media screen and (max-width: 850px) {
+
+.edit-view {
+  width: 80%;
+}
+
+}
+
+@media screen and (max-width: 550px) {
+
+.edit-view {
+  width: 95%;
+}
+
+}
+
 </style>
