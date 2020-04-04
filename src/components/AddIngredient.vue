@@ -38,7 +38,7 @@ export default {
         }
       ],
       ingredients: []
-          };
+    };
   },
 
   methods: {
@@ -66,7 +66,7 @@ export default {
       }
 
       this.recipe.ingredients.push(newIngredient);
-      console.log(this.recipe.ingredients)
+      console.log(this.recipe.ingredients);
     },
     deleteIngredientForm: function(index) {
       this.ingredientsTab.splice(index, 1);

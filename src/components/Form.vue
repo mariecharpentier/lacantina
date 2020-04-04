@@ -98,7 +98,7 @@
       </div>
 
       <div class="actions centered">
-        <input type="submit" id="btn" value="Valider" @click="addIngredient"/>
+        <input type="submit" id="btn" value="Valider" @click="addIngredient" />
       </div>
     </form>
   </div>
@@ -110,7 +110,7 @@ export default {
   name: "Form",
   data: function() {
     return {
-      ingredients: [[""]], 
+      ingredients: [[""]],
       newIngredient: [""]
     };
   },
@@ -136,8 +136,8 @@ export default {
   },
   methods: {
     addIngredient: function() {
-        // this.recipe.ingredients.push();
-        console.log(this.recipe.ingredients)
+      // this.recipe.ingredients.push();
+      console.log(this.recipe.ingredients);
     },
 
     addStep() {

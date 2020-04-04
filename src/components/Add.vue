@@ -18,7 +18,7 @@ export default {
     send: function(recipe) {
       userService.createRecipe(recipe).then(
         () => {
-          // this.$router.replace("/recipes");
+          this.$router.replace("/recipes");
           console.log(recipe);
         },
         () => console.log("test")
