@@ -98,7 +98,7 @@
       </div>
 
       <div class="actions centered">
-        <input type="submit" id="btn" value="Valider" />
+        <input type="submit" id="btn" value="Valider" @click="addIngredient"/>
       </div>
     </form>
   </div>
@@ -110,7 +110,8 @@ export default {
   name: "Form",
   data: function() {
     return {
-      ingredients: [[""]]
+      ingredients: [[""]], 
+      newIngredient: [""]
     };
   },
   components: {
@@ -135,11 +136,13 @@ export default {
   },
   methods: {
     addIngredient: function() {
-      this.recipe.ingredients.push([""]);
+        // this.recipe.ingredients.push();
+        console.log(this.recipe.ingredients)
     },
+
     addStep() {
       this.recipe.etapes.push("");
-      console.log(this.recipe.etapes)
+      console.log(this.recipe.etapes);
     },
     deleteStep(index) {
       this.recipe.etapes.splice(index, 1);
@@ -203,10 +206,6 @@ export default {
   width: 60%;
   padding-right: 6px;
   padding-left: 10px;
-}
-
-.searchform .input-error {
-  border: 1px solid red;
 }
 
 .searchform select {
@@ -308,7 +307,8 @@ export default {
   }
 
   .searchform input,
-  .searchform textarea {
+  .searchform textarea,
+  .addStep textarea {
     width: 97%;
   }
 

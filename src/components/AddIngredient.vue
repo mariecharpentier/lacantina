@@ -3,10 +3,12 @@
     <li class="form-group" v-for="(ingredient, index) in ingredientsTab" :key="index">
       <input type="number" min="1" placeholder="1" v-model="ingredient.quantity" required />
       <select name="mesure" v-model="ingredient.unit" required>
-        <option value="unite" disabled>unité</option>
+        <option value="unité">unité</option>
         <option value="gr">gr</option>
+        <option value="kg">gr</option>
         <option value="dl">dl</option>
         <option value="cl">cl</option>
+        <option value="l">l</option>
       </select>
       <input type="text" placeholder="de lait" v-model="ingredient.name" required />
       <img @click="deleteIngredientForm(index)" src="../assets/close.svg" alt="close" class="close" />
@@ -35,18 +37,36 @@ export default {
           name: ""
         }
       ],
-      ingredients: [[""]]
-    };
+      ingredients: []
+          };
   },
+
   methods: {
     addIngredientForm: function() {
+      // Get the user ingredients elements
       this.ingredientsTab.push({
         quantity: "",
         unit: "",
         name: ""
       });
 
-      console.log(this.ingredientsTab);
+      // Turn into the ingredient description
+      let newIngredient = [];
+      let ingredientQty = [];
+      let ingredientName = [];
+
+      for (var i = 0; i <= this.ingredientsTab.length; i++) {
+        ingredientQty =
+          this.ingredientsTab[i].quantity + this.ingredientsTab[i].unit;
+        ingredientName = this.ingredientsTab[i].name;
+
+        newIngredient.push([ingredientQty, ingredientName]);
+
+        return newIngredient;
+      }
+
+      this.recipe.ingredients.push(newIngredient);
+      console.log(this.recipe.ingredients)
     },
     deleteIngredientForm: function(index) {
       this.ingredientsTab.splice(index, 1);
@@ -60,18 +80,15 @@ export default {
   margin-bottom: 0 !important;
   position: relative;
 }
-
 #ingredients .addIngredient .form-group {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
 }
-
 .form-group #ingredients input:first-of-type {
   width: 35px;
   margin-right: 5px;
 }
-
 .form-group #ingredients select {
   width: 50px;
   height: 42px;
@@ -79,47 +96,15 @@ export default {
   background-color: #f3f5f8;
   border: none;
 }
-
 .form-group #ingredients input {
   background-color: #f3f5f8;
   border: none;
 }
-
 .form-group #ingredients input:last-of-type {
   width: 210px;
 }
 
-.addBtn {
-  position: relative;
-  margin-top: 10px;
-  height: 40px;
-}
-
-.addIngredient .addBtn span {
-  font-size: 14px;
-  font-style: italic;
-  position: absolute;
-  top: 0;
-  right: 50px;
-  color: #74b5bb;
-}
-.addIngredient .addInput {
-  width: 30px;
-  position: absolute;
-  top: -7px;
-  right: 5px;
-}
-
-.addIngredient .close {
-  position: absolute;
-  top: calc(50% - 12px);
-  right: 10px;
-  color: #3c70bf;
-  width: 24px;
-}
-
 /********************RESPONSIVE******************************/
-
 @media screen and (max-width: 1050px) {
   .form-group #ingredients input:last-of-type {
     width: 100%;
