@@ -67,15 +67,29 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group addStep">
         <label for="etapes" class="labelforEtapes">Étapes :</label>
-        <textarea
-          type="text"
-          id="etapes"
-          placeholder="Se laver les mains..."
-          v-model="recipe.etapes"
-          required
-        />
+        <ul>
+          <li v-for="(step, index) in recipe.etapes" :key="step.id">
+            <textarea
+              type="text"
+              id="etapes"
+              placeholder="Se laver les mains..."
+              v-model="recipe.etapes[index]"
+              required
+            />
+            <img @click="deleteStep(index)" src="../assets/close.svg" alt="close" class="close" />
+          </li>
+          <li class="addBtn">
+            <span>Ajouter une étape</span>
+            <img
+              src="../assets/add.svg"
+              class="addInput"
+              title="Ajouter une étape"
+              @click="addStep"
+            />
+          </li>
+        </ul>
       </div>
 
       <div class="form-group">
@@ -92,7 +106,6 @@
 
 <script>
 import AddIngredient from "./AddIngredient.vue";
-
 export default {
   name: "Form",
   data: function() {
@@ -114,21 +127,26 @@ export default {
           personnes: null,
           tempsPreparation: null,
           ingredients: [[""]],
-          etapes: ["lavage", "coupage"],
+          etapes: [""],
           photo: ""
         };
       }
     }
   },
-
   methods: {
     addIngredient: function() {
-      this.recipe.ingredients.push();
+      this.recipe.ingredients.push([""]);
+    },
+    addStep() {
+      this.recipe.etapes.push("");
+      console.log(this.recipe.etapes)
+    },
+    deleteStep(index) {
+      this.recipe.etapes.splice(index, 1);
     },
     send: function() {
       this.recipe.personnes = Number(this.recipe.personnes);
       this.recipe.tempsPreparation = Number(this.recipe.tempsPreparation);
-
       this.$emit("send", this.recipe);
     }
   }
@@ -207,6 +225,53 @@ export default {
   resize: none;
 }
 
+.addStep ul {
+  width: 62%;
+}
+
+.addStep li {
+  margin-top: 10px;
+  position: relative;
+}
+
+.addStep textarea {
+  width: 97%;
+}
+/**********************BTN ADD*****************************/
+.addBtn {
+  position: relative;
+  margin-top: 10px;
+  height: 40px;
+}
+.addBtn span {
+  font-size: 14px;
+  font-style: italic;
+  position: absolute;
+  top: 0;
+  right: 50px;
+  color: #74b5bb;
+}
+.addInput {
+  width: 30px;
+  position: absolute;
+  top: -7px;
+  right: 5px;
+}
+
+.addStep .close {
+  top: calc(27% - 12px);
+}
+
+.close {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 10px;
+  color: #3c70bf;
+  width: 24px;
+}
+
+/**********************BTN SUBMIT*****************************/
+
 #btn {
   border-radius: 3px;
   text-align: center;
@@ -242,8 +307,13 @@ export default {
     width: 100%;
   }
 
-  .searchform input .searchform textarea {
+  .searchform input,
+  .searchform textarea {
     width: 97%;
+  }
+
+  .addStep ul {
+    width: 100%;
   }
 }
 </style>
