@@ -41,12 +41,11 @@
       />
 
       <div v-show="filteredList.length < 1">
-        <h3 class="searchNull centered">Désolé, il n'y a pas de recette correspondant à ces critères...</h3>
+        <h3
+          class="searchNull centered"
+        >Désolé, il n'y a pas de recette correspondant à ces critères...</h3>
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -216,14 +215,8 @@ export default {
     margin-bottom: 8px;
   }
 
-  .filterform select {
-    width: 100%;
-  }
-
-  .filterform input[type="number"] {
-    width: 100%;
-  }
-
+  .filterform select,
+  .filterform input[type="number"],
   .filterform input[type="search"] {
     width: 100%;
   }

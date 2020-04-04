@@ -14,7 +14,7 @@
 
       <div class="form-group">
         <label for="description">Description :</label>
-         <textarea
+        <textarea
           type="text"
           id="description"
           placeholder="Présentez votre recette..."
@@ -138,8 +138,7 @@ export default {
 <style>
 .searchform {
   margin: auto;
-  width: 95%;
-  max-width: 520px;
+  width: 80%;
   min-width: 320px;
   padding-bottom: 1em;
 }
@@ -175,6 +174,10 @@ export default {
   font-size: 14px;
   background-color: #f3f5f8;
   border: none;
+}
+
+#niveau {
+  width: 62%;
 }
 
 .searchform input {
@@ -227,24 +230,20 @@ export default {
 
 /********************RESPONSIVE******************************/
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 950px) {
   .searchform .form-group {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  .searchform select {
+  .searchform select,
+  #niveau {
     width: 100%;
   }
 
-  .searchform input {
+  .searchform input .searchform textarea {
     width: 97%;
   }
-
-  .searchform textarea {
-    width: 97%;
-  }
-
 }
 </style>

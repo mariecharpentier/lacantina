@@ -43,20 +43,14 @@ export default {
 /********************RESPONSIVE******************************/
 
 @media screen and (max-width: 850px) {
-
-#add-view {
-  width: 80%;
-}
-
+  #add-view {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 550px) {
-
-#add-view {
-  width: 95%;
+  #add-view {
+    width: 95%;
+  }
 }
-
-}
-
-
 </style>

@@ -109,8 +109,8 @@ export default {
 
 .recipecard article {
   width: 60%;
-  margin-bottom: 2em;
 }
+
 .photo {
   width: 36%;
   height: 350px;
@@ -142,20 +142,13 @@ export default {
   font-weight: bold;
 }
 
-.cta-read a {
-  font-size: 19px;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: bold;
-}
-
 .cta-read:hover {
   box-shadow: 0px 15px 20px rgba(136, 156, 148, 0.4);
   transform: translateY(-3px);
 }
 
 .cta-edit {
-  margin-right: 1em;
+  margin: 1em 1em 0 0;
   align-self: flex-end;
 }
 
@@ -190,17 +183,14 @@ export default {
     padding-left: 0;
   }
 
-  .recipecard article {
-    width: 100%;
-  }
-
+  .recipecard article,
   .photo {
     width: 100%;
   }
 
   .cta-edit {
-    margin-right: 0;
     align-self: unset;
+    margin: 1em 0;
   }
 }
 

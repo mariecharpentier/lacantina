@@ -63,7 +63,7 @@ export default {
 
 #ingredients .addIngredient .form-group {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: stretch;
 }
 
@@ -71,22 +71,22 @@ export default {
   width: 35px;
   margin-right: 5px;
 }
+
 .form-group #ingredients select {
   width: 50px;
   height: 42px;
-  margin-right: 5px;  
+  margin-right: 5px;
   background-color: #f3f5f8;
   border: none;
 }
 
 .form-group #ingredients input {
-    background-color: #f3f5f8;
-    border: none;
-
+  background-color: #f3f5f8;
+  border: none;
 }
 
 .form-group #ingredients input:last-of-type {
-  width: 200px;
+  width: 210px;
 }
 
 .addBtn {
@@ -94,6 +94,7 @@ export default {
   margin-top: 10px;
   height: 40px;
 }
+
 .addIngredient .addBtn span {
   font-size: 14px;
   font-style: italic;
@@ -119,12 +120,9 @@ export default {
 
 /********************RESPONSIVE******************************/
 
-@media screen and (max-width: 900px) {
-
-.form-group #ingredients input:last-of-type {
+@media screen and (max-width: 1050px) {
+  .form-group #ingredients input:last-of-type {
     width: 100%;
+  }
 }
-
-}
-
 </style>
