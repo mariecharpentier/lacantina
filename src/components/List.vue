@@ -39,10 +39,14 @@
         :key="recipe.id"
         @remove="removeRecipe"
       />
+
+      <div v-show="filteredList.length < 1">
+        <h3 class="searchNull centered">Désolé, il n'y a pas de recette correspondant à ces critères...</h3>
+      </div>
     </div>
-    <div v-else>
-      <h3>Désolé, il n'y a pas de recette correspondant à ces critères...</h3>
-    </div>
+
+
+
   </div>
 </template>
 
@@ -232,6 +236,12 @@ export default {
 @media screen and (max-width: 580px) {
   .filterform {
     width: 80%;
+  }
+
+  .searchNull {
+    width: 80%;
+    margin: 0 auto;
+    text-align: justify;
   }
 }
 </style>
