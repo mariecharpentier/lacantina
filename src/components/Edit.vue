@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     send: function(recipe) {
+      // Edit new recipe
       userService.editRecipe(recipe).then(
         () => {
           this.$router.replace("/recipes");
@@ -30,6 +31,7 @@ export default {
     }
   },
   created: function() {
+    // Fetch a single recipe
     userService.getOneRecipe(this.$route.params.id).then(recipe => {
       this.recipe = recipe;
     });

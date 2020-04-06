@@ -35,7 +35,6 @@ export default {
         userService.deleteRecipe(recipe.id).then(
           res => {
             if (res !== undefined) {
-              console.log(res);
               this.recipesList.splice(index, 0, deleted_recipe.pop());
               console.log(`La recette ${recipe.titre} a bien été supprimée.`);
             }
@@ -43,6 +42,8 @@ export default {
           () => console.log(`Ajax error : la recette n'a pas été trouvée.`)
         );
       }
+      this.$router.replace("/recipes");
+
     }
   },
   created: function() {

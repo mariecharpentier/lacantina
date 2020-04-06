@@ -136,13 +136,11 @@ export default {
   },
   methods: {
     addIngredient: function() {
-      // this.recipe.ingredients.push();
-      console.log(this.recipe.ingredients);
+      this.recipe.ingredients.push();
     },
 
     addStep() {
       this.recipe.etapes.push("");
-      console.log(this.recipe.etapes);
     },
     deleteStep(index) {
       this.recipe.etapes.splice(index, 1);

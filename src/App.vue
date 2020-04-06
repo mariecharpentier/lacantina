@@ -101,5 +101,14 @@ header {
   border-color: #71a9b4!important;
 }
 
+/********************RESPONSIVE******************************/
+
+@media screen and (max-width: 500px) {
+
+  .dg-main-content {
+    width: 85%!important;
+  }
+
+}
 
 </style>

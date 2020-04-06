@@ -16,14 +16,16 @@ export default {
   },
   methods: {
     send: function(recipe) {
+
+      // Add a new recipe
       userService.createRecipe(recipe).then(
         () => {
           this.$router.replace("/recipes");
-          console.log(recipe);
         },
         () => console.log("test")
       );
     }
+    
   }
 };
 </script>

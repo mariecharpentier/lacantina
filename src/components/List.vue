@@ -86,7 +86,6 @@ export default {
         ) {
           return false;
         }
-        console.log(this.searchPax);
         if (this.searchPax) {
           if (this.searchPax == "option 1") {
             if (people > 4) {
@@ -111,11 +110,11 @@ export default {
         return true;
       });
     }
+
   },
   created: function() {
     userService.getAllRecipes().then(recipesList => {
       this.recipesList = recipesList;
-      console.log(recipesList);
     });
   },
   methods: {
@@ -126,7 +125,6 @@ export default {
         userService.deleteRecipe(recipe.id).then(
           res => {
             if (res !== undefined) {
-              console.log(res);
               this.recipesList.splice(index, 0, deleted_recipe.pop());
               console.log(`La recette ${recipe.titre} a bien été supprimée.`);
             }

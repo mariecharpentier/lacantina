@@ -79,7 +79,6 @@ export default {
   methods: {
     onClickRemove: function() {
       this.$emit("remove", this.recipe);
-      this.$router.replace("/recipes");
     },
     goToRecipe: function() {
       this.$router.replace(`/recipe/${this.recipe.id}`);
@@ -112,8 +111,7 @@ export default {
 }
 
 .photo {
-  width: 36%;
-  height: 350px;
+  width: 280px;
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -148,7 +146,7 @@ export default {
 }
 
 .cta-edit {
-  margin: 1em 1em 0 0;
+  margin: 3em 1em 0 0;
   align-self: flex-end;
 }
 
@@ -186,6 +184,10 @@ export default {
   .recipecard article,
   .photo {
     width: 100%;
+  }
+
+  .photo {
+    height: 260px;
   }
 
   .cta-edit {

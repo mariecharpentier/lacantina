@@ -61,15 +61,10 @@ export default {
   name: "Recipe",
   data: function() {
     return {
-      recipe: {}
+      recipe: {},
+      recipesList: []
     };
   },
-  created: function() {
-    userService.getOneRecipe(this.$route.params.id).then(recipe => {
-      this.recipe = recipe;
-    });
-  },
-
   computed: {
     DEFAULT_PHOTO: function() {
       return "../assets/default.jpg";
@@ -94,10 +89,30 @@ export default {
     }
   },
   methods: {
-    onClickRemove: function() {
-      this.$emit("remove", this.recipe);
-      this.$router.replace("/recipes");
+    onClickRemove: function(recipe) {
+      let index = this.recipesList.indexOf(this.recipe.id);
+      if (index > -1) {
+        const deleted_recipe = this.recipesList.splice(index, 1);
+        userService.deleteRecipe(recipe.id).then(
+          res => {
+            if (res !== undefined) {
+              this.recipesList.splice(index, 0, deleted_recipe.pop());
+              console.log(`La recette ${recipe.titre} a bien été supprimée.`);
+              this.$router.replace("/recipes");
+            }
+          },
+          () => console.log(`Ajax error : la recette n'a pas été trouvée.`)
+        );
+      }
     }
+  },
+  created: function() {
+    userService.getOneRecipe(this.$route.params.id).then(recipe => {
+      this.recipe = recipe;
+    });
+    userService.getAllRecipes().then(recipesList => {
+      this.recipesList = recipesList;
+    });
   }
 };
 </script>
@@ -116,6 +131,7 @@ export default {
 
 .photo {
   width: 100%;
+  height: 400px;
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -153,6 +169,10 @@ export default {
 @media screen and (max-width: 700px) {
   .recipe-details {
     width: 90%;
+  }
+
+  .photo {
+    height: 250px;
   }
 }
 </style>
