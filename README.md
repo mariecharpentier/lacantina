@@ -2,7 +2,7 @@
 Projet de fin d'études Ecole Multimédia 
 Application de recettes de cuisine réalisée avec Vue.js
 <img src="mockup.jpg" alt="" width="500px">
-<img src="mobile.jpg" alt="" width="500px">
+<img src="mobile.jpg" alt="" width="220px">
 
 ## Project setup
 ```
